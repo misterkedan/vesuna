@@ -13,37 +13,40 @@ body {
 		rgb(230,235,240) 0%, 
 		rgb(255,255,255) 100%
 	);
-	overflow-wrap: break-word;
 }
 
-a {
-	color: rgba(0, 170, 230);
-}
-
-a:hover{
-	color: rgb(100, 200, 255);
-}
-
-
-.main {
-	height: 100%;
+.demo-main {
+	
 	display: flex;
     align-items: center;
     justify-content: center;
+	padding: 2rem 3rem;
+	height: 100%;
+	height: calc( 100vh - 2 * 2rem );
 }
 
-#demo {
-	margin: 2rem;
+.demo-text {
+	
 	font-size: 3rem;
 	opacity: 0.8;
+	max-width: 100%;
+	overflow-wrap: break-word;
 }
 
-.footer {
+.demo-footer {
 	font-size: 0.875rem;
 	position: fixed;
 	bottom: 0;
 	right: 0;
 	margin: 1rem;
 	color: grey;
+}
+
+.footer a {
+	color: rgba(0, 170, 230);
+}
+
+.footer a:hover{
+	color: rgb(100, 200, 255);
 }
 

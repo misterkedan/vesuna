@@ -1,5 +1,9 @@
 const path = require( 'path' );
 
+const optimization = {
+	minimize: true,
+};
+
 const config = {
 
 	build: {
@@ -11,7 +15,7 @@ const config = {
 			library: {
 				type: 'umd',
 				name: 'vesunna',
-				export: 'vesunna'
+				export: 'default'
 			}
 		},
 		module: {
@@ -26,9 +30,7 @@ const config = {
 				}
 			]
 		},
-		optimization: {
-			minimize: true,
-		},
+		optimization
 	},
 
 	demo: {
@@ -45,7 +47,8 @@ const config = {
 			alias: {
 				'vesunna': './vesunna'
 			}
-		}
+		},
+		optimization,
 	},
 
 	dev: {
@@ -69,7 +72,7 @@ module.exports = ( env, argv ) => {
 
 	if ( argv.mode === 'development' ) return {
 		...demo,
-		...dev
+		...dev,
 	};
 
 	return [
@@ -77,7 +80,7 @@ module.exports = ( env, argv ) => {
 			...demo,
 			externals: {
 				...demo.externals,
-				vesunna: 'window'
+				vesunna: 'vesunna'
 			},
 		},
 		{
@@ -91,4 +94,3 @@ module.exports = ( env, argv ) => {
 	];
 
 };
-

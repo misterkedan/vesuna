@@ -1,7 +1,18 @@
-const vesunna = {
+import { random } from './utils/random';
+import { description } from './data/description';
 
-	test: ( test ) => console.log( { test } )
+function generateDescription() {
 
-};
+	return description.map( words => random.item( words ) ).join( '-' );
 
-export { vesunna };
+}
+
+function generate() {
+
+	return generateDescription();
+
+}
+
+const vesunna = { generate };
+
+export default vesunna;
