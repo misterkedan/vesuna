@@ -1,4 +1,4 @@
-# Vesuna
+# Vesunna
 
 Wordy random seed generator.  
 
