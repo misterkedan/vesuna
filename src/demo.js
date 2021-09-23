@@ -9,14 +9,14 @@ import * as dat from 'dat.gui';
 
 const element = document.getElementById( 'demo' );
 
-const demo = { seed: '', generate };
+const LABEL = 'GENERATE SEED';
+const demo = { [ LABEL ]: generate };
 
 function generate() {
 
 	const seed = vesunna.generate();
 	demo.seed = seed;
 	element.textContent = formatDescription( seed );
-	console.log( seed );
 
 }
 
@@ -28,7 +28,10 @@ function capitalize( string ) {
 
 function formatDescription( string ) {
 
-	return string.split( '-' ).map( word => capitalize( word ) ).join( ' ' );
+	const splitted = ( vesunna.separator )
+		? string.split( vesunna.separator )
+		: [ string ];
+	return splitted.map( word => capitalize( word ) ).join( ' ' );
 
 }
 
@@ -42,6 +45,9 @@ generate();
 
 const gui = new dat.GUI();
 gui.vesunna = gui.addFolder( 'Vesunna' );
-gui.vesunna.add( demo, 'seed' ).listen();
-gui.vesunna.add( demo, 'generate' );
+gui.vesunna.add( vesunna, 'mode', vesunna.modes ).onChange( generate );
+gui.vesunna.add( vesunna, 'separator', vesunna.separators ).onChange( generate );
+gui.vesunna.add( vesunna, 'basic' ).onChange( generate );
+gui.vesunna.add( vesunna, 'seed' ).listen();
+gui.vesunna.add( demo, LABEL );
 gui.vesunna.open();

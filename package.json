@@ -1,7 +1,7 @@
 {
     "name": "vesunna",
-    "version": "0.2.0",
-    "description": "Wordy random seed generator.",
+    "version": "0.3.0",
+    "description": "Generate and use memorable random seeds.",
     "author": "Pierre Keda",
     "license": "MIT",
     "devDependencies": {

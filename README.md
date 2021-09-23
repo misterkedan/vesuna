@@ -1,6 +1,6 @@
 # Vesunna
 
-Wordy random seed generator.  
+Generate and use memorable random seeds.
 
 _
 
