@@ -1,11 +1,7 @@
 import vesunna from 'vesunna';
 import * as dat from 'dat.gui';
 
-/*-----------------------------------------------------------------------------/
-
-	Demo
-
-/-----------------------------------------------------------------------------*/
+// Demo
 
 const element = document.getElementById( 'demo' );
 
@@ -17,6 +13,7 @@ function generate() {
 	const seed = vesunna.generate();
 	demo.seed = seed;
 	element.textContent = formatDescription( seed );
+	log( false );
 
 }
 
@@ -35,19 +32,24 @@ function formatDescription( string ) {
 
 }
 
+function log( reset = true ) {
+
+	const r = vesunna.random;
+	if ( reset ) vesunna.reset();
+	console.log( Array.from( { length: 8 }, () => r( 0, 9 ) ).join( '' ) );
+
+}
+
 generate();
 
-/*-----------------------------------------------------------------------------/
-
-	Demo GUI
-
-/-----------------------------------------------------------------------------*/
+// GUI
 
 const gui = new dat.GUI();
 gui.vesunna = gui.addFolder( 'Vesunna' );
 gui.vesunna.add( vesunna, 'mode', vesunna.modes ).onChange( generate );
 gui.vesunna.add( vesunna, 'separator', vesunna.separators ).onChange( generate );
 gui.vesunna.add( vesunna, 'basic' ).onChange( generate );
-gui.vesunna.add( vesunna, 'seed' ).listen();
+gui.vesunna.add( vesunna, 'seed' ).onFinishChange( log ).listen();
 gui.vesunna.add( demo, LABEL );
 gui.vesunna.open();
+
