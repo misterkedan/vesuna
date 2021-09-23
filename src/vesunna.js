@@ -2,8 +2,6 @@ import { random } from './utils/random';
 import { codename } from './data/codename';
 import { description } from './data/description';
 
-
-
 const DESCRIPTION = 'description';
 const CODENAME = 'codename';
 const modes = {
@@ -50,6 +48,8 @@ function generateDescription() {
 
 function generate() {
 
+	const { mode } = vesunna;
+
 	const defaultGenerator = generateCodename;
 
 	const generators = {
@@ -57,9 +57,9 @@ function generate() {
 		[ CODENAME ]: generateCodename,
 	};
 
-	const generator = generators[ vesunna.mode ] || defaultGenerator;
+	const generator = generators[ mode ] || defaultGenerator;
 
-	vesunna.seed = generator( basic );
+	vesunna.seed = generator();
 
 	return vesunna.seed;
 
