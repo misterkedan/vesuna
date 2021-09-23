@@ -1,12 +1,17 @@
 import { random } from './utils/random';
 import { codename } from './data/codename';
 import { description } from './data/description';
+import { characters } from './data/characters';
 
-const DESCRIPTION = 'description';
+console.log( characters );
+
 const CODENAME = 'codename';
+const DESCRIPTION = 'description';
+const GIBBERISH = 'gibberish';
 const modes = {
 	DESCRIPTION: DESCRIPTION,
-	CODENAME: CODENAME
+	CODENAME: CODENAME,
+	GIBBERISH: GIBBERISH
 };
 let mode = modes.CODENAME;
 
@@ -23,6 +28,23 @@ let basic = true;
 let seed = '';
 
 const getRandomWord = ( words ) => random.item( words );
+
+function generateGibberish() {
+
+	const { basic } = vesunna;
+	const { vowels, consonnants } = characters;
+
+	const length = ( basic ) ? 3 : 6;
+	const letters = Array.from( { length }, ( _, i ) => {
+
+		const pool = ( i % 2 ) ?  vowels : consonnants;
+		return random.item( pool );
+
+	} );
+
+	return letters.join( '' );
+
+}
 
 function generateCodename() {
 
@@ -53,8 +75,9 @@ function generate() {
 	const defaultGenerator = generateCodename;
 
 	const generators = {
-		[ DESCRIPTION ]: generateDescription,
 		[ CODENAME ]: generateCodename,
+		[ DESCRIPTION ]: generateDescription,
+		[ GIBBERISH ]: generateGibberish,
 	};
 
 	const generator = generators[ mode ] || defaultGenerator;
