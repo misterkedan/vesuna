@@ -16,6 +16,12 @@ function item( array ) {
 
 }
 
-const random = { int, uint, item };
+function boolean() {
+
+	return Math.random() < 0.5;
+
+}
+
+const random = { int, uint, item, boolean };
 
 export { random };

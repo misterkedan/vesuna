@@ -3,15 +3,15 @@ import { codename } from './data/codename';
 import { description } from './data/description';
 import { characters } from './data/characters';
 
-console.log( characters );
-
 const CODENAME = 'codename';
 const DESCRIPTION = 'description';
 const GIBBERISH = 'gibberish';
+const SERIAL = 'serial';
 const modes = {
 	DESCRIPTION: DESCRIPTION,
 	CODENAME: CODENAME,
-	GIBBERISH: GIBBERISH
+	GIBBERISH: GIBBERISH,
+	SERIAL: SERIAL
 };
 let mode = modes.CODENAME;
 
@@ -28,23 +28,6 @@ let basic = true;
 let seed = '';
 
 const getRandomWord = ( words ) => random.item( words );
-
-function generateGibberish() {
-
-	const { basic } = vesunna;
-	const { vowels, consonnants } = characters;
-
-	const length = ( basic ) ? 3 : 6;
-	const letters = Array.from( { length }, ( _, i ) => {
-
-		const pool = ( i % 2 ) ?  vowels : consonnants;
-		return random.item( pool );
-
-	} );
-
-	return letters.join( '' );
-
-}
 
 function generateCodename() {
 
@@ -68,6 +51,41 @@ function generateDescription() {
 
 }
 
+function generateGibberish() {
+
+	const { basic } = vesunna;
+	const { vowels, consonnants } = characters;
+
+	const length = ( basic ) ? 4 : 8;
+	const letters = Array.from( { length }, ( _, i ) => {
+
+		const pool = ( i % 2 ) ?  vowels : consonnants;
+		return random.item( pool );
+
+	} );
+
+	return letters.join( '' );
+
+}
+
+function generateSerial() {
+
+	const { basic } = vesunna;
+
+	const length = ( basic ) ? 4 : 8;
+
+	const filtered = 'ilo'; //To avoid Il/o0 confusion
+	const pool = characters.alphabet.filter( letter => ! filtered.includes( letter ) );
+
+	const chars = Array.from( { length }, ( _, i ) =>
+		random.boolean()
+			? random.item( pool ).toUpperCase()
+			: random.int( 1, 9 )
+	);
+	return chars.join( '' );
+
+}
+
 function generate() {
 
 	const { mode } = vesunna;
@@ -78,6 +96,7 @@ function generate() {
 		[ CODENAME ]: generateCodename,
 		[ DESCRIPTION ]: generateDescription,
 		[ GIBBERISH ]: generateGibberish,
+		[ SERIAL ]: generateSerial,
 	};
 
 	const generator = generators[ mode ] || defaultGenerator;
