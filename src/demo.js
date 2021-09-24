@@ -8,6 +8,8 @@ const element = document.getElementById( 'demo' );
 const LABEL = 'GENERATE SEED';
 const demo = { [ LABEL ]: generate };
 
+vesuna.separator = vesuna.separators.DASH;
+
 function generate() {
 
 	vesuna.generate();
@@ -120,5 +122,5 @@ function draw() {
 window.addEventListener( 'resize', draw );
 element.addEventListener( 'pointerup', generate );
 
-vesuna.separator = vesuna.separators.DASH;
+
 generate();
