@@ -37,7 +37,7 @@ function update() {
 // GUI
 
 const gui = new dat.GUI();
-gui.vesuna = gui.addFolder( 'vesuna' );
+gui.vesuna = gui.addFolder( 'Vesuna' );
 gui.vesuna.add( vesuna, 'mode', vesuna.modes ).onChange( generate );
 gui.vesuna.add( vesuna, 'separator', vesuna.separators ).onChange( generate );
 gui.vesuna.add( vesuna, 'basic' ).onChange( generate );

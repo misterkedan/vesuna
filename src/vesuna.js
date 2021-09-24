@@ -12,8 +12,8 @@ const DESCRIPTION = 'description';
 const GIBBERISH = 'gibberish';
 const SERIAL = 'serial';
 const modes = {
-	DESCRIPTION: DESCRIPTION,
 	CODENAME: CODENAME,
+	DESCRIPTION: DESCRIPTION,
 	GIBBERISH: GIBBERISH,
 	SERIAL: SERIAL
 };
@@ -21,8 +21,8 @@ let mode = modes.CODENAME;
 
 const separators = {
 	NONE: '',
-	DOT: '.',
 	DASH: '-',
+	DOT: '.',
 	TILDE: '~',
 	UNDERSCORE: '_'
 };
@@ -83,7 +83,8 @@ function generateSerial() {
 	const length = ( basic ) ? 4 : 8;
 
 	const filtered = 'ilo'; // To avoid Il/o0 confusion
-	const pool = characters.alphabet.filter( letter => ! filtered.includes( letter ) );
+	const pool = characters.alphabet
+		.filter( letter => ! filtered.includes( letter ) );
 
 	const chars = Array.from( { length }, () =>
 		random.boolean()
