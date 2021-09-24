@@ -1,17 +1,17 @@
-const colors = [
-	'black', 'white', 'red', 'green', 'blue', 'yellow', 'cyan', 'magenta',
-	'gray', 'silver', 'pink', 'brown', 'purple', 'fuschia', 'lime', 'olive',
-	'navy', 'teal', 'aqua', 'coral', 'crimson', 'gold', 'bronze', 'khaki',
-	'violet', 'turquoise', 'ruby', 'emerald', 'onyx', 'lapis', 'jade', 'amber'
+const adjectives = [
+	'black', 'white', 'red', 'green', 'blue', 'pink', 'purple', 'orange',
+	'silver', 'golden', 'iron', 'stone', 'velvet', 'opal', 'ivory', 'coral',
+	'broken', 'pearl', 'silk', 'fire', 'ice', 'thunder', 'falling', 'rising',
+	'diamond', 'turquoise', 'ruby', 'emerald', 'onyx', 'lapis', 'jade', 'amber'
 ];
 
 const things = [
-	'shield', 'sword', 'spear', 'arrow', 'knight', 'king', 'queen', 'rook',
-	'box', 'garden', 'flower', 'apple', 'echo', 'gambit', 'rock', 'dragon',
-	'sun', 'moon', 'star', 'cloud', 'rain', 'wind', 'dawn', 'thunder',
+	'shield', 'sword', 'spear', 'arrow', 'knight', 'king', 'queen', 'phoenix',
+	'box', 'garden', 'flower', 'apple', 'echo', 'gambit', 'fist', 'dragon',
+	'sun', 'moon', 'star', 'cloud', 'rain', 'wind', 'dawn', 'storm',
 	'eagle', 'tiger', 'lion', 'puma', 'wolf', 'panther', 'dove', 'fox'
 ];
 
-const codename = [ colors, things ];
+const codename = [ adjectives, things ];
 
 export { codename };

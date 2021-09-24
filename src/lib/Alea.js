@@ -1,3 +1,8 @@
+// A port of an algorithm by Johannes Baagøe <baagoe@baagoe.com>, 2010
+// http://baagoe.com/en/RandomMusings/javascript/
+// https://github.com/nquinlan/better-random-numbers-for-javascript-mirror
+// Original work is under MIT license
+//
 // Copyright (C) 2010 by Johannes Baagøe <baagoe@baagoe.org>
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -17,71 +22,65 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-
-// A port of an algorithm by Johannes Baagøe <baagoe@baagoe.com>, 2010
-// http://baagoe.com/en/RandomMusings/javascript/
-// https://github.com/nquinlan/better-random-numbers-for-javascript-mirror
-// Original work is under MIT license
-
+//
 // Yoinked from https://github.com/davidbau/seedrandom
+// Edited by Pierre Keda
 
-// Simplified and converted to class by Pierre Keda
+function Mash() {
 
-class Alea {
+	var n = 0xefc8249d;
 
-	constructor( seed ) {
+	var mash = function ( data ) {
 
-		const mash = ( data ) => {
+		data = String( data );
+		for ( var i = 0; i < data.length; i ++ ) {
 
-			let n = 0xefc8249d;
+			n += data.charCodeAt( i );
+			var h = 0.02519603282416938 * n;
+			n = h >>> 0;
+			h -= n;
+			h *= n;
+			n = h >>> 0;
+			h -= n;
+			n += h * 0x100000000; // 2^32
 
-			data = String( data );
+		}
 
-			for ( let i = 0; i < data.length; i ++ ) {
+		return ( n >>> 0 ) * 2.3283064365386963e-10; // 2^-32
 
-				n += data.charCodeAt( i );
-				let h = 0.02519603282416938 * n;
-				n = h >>> 0;
-				h -= n;
-				h *= n;
-				n = h >>> 0;
-				h -= n;
-				n += h * 0x100000000; // 2^32
+	};
 
-			}
+	return mash;
 
-			return ( n >>> 0 ) * 2.3283064365386963e-10; // 2^-32
+}
 
-		};
+function Alea( seed ) {
 
-		// Johannes Baagøe's seeding algorithm
+	var me = this;
+	var mash = Mash();
 
-		let c, s0, s1, s2;
+	me.random = function () {
 
-		c = 1;
-		s0 = mash( ' ' );
-		s1 = mash( ' ' );
-		s2 = mash( ' ' );
-		s0 -= mash( seed );
-		if ( s0 < 0 ) s0 += 1;
+		var t = 2091639 * me.s0 + me.c * 2.3283064365386963e-10; // 2^-32
+		me.s0 = me.s1;
+		me.s1 = me.s2;
+		return me.s2 = t - ( me.c = t | 0 );
 
-		s1 -= mash( seed );
-		if ( s1 < 0 ) s1 += 1;
+	};
 
-		s2 -= mash( seed );
-		if ( s2 < 0 ) s2 += 1;
+	// Johannes Baagøe's seeding algorithm
+	me.c = 1;
+	me.s0 = mash( ' ' );
+	me.s1 = mash( ' ' );
+	me.s2 = mash( ' ' );
+	me.s0 -= mash( seed );
+	if ( me.s0 < 0 ) me.s0 += 1;
 
-		this.random = function () {
+	me.s1 -= mash( seed );
+	if ( me.s1 < 0 ) me.s1 += 1;
 
-			const t = 2091639 * s0 + c * 2.3283064365386963e-10; // 2^-32
-			s0 = s1;
-			s1 = s2;
-
-			return s2 = t - ( c = t | 0 );
-
-		};
-
-	}
+	me.s2 -= mash( seed );
+	if ( me.s2 < 0 ) me.s2 += 1;
 
 }
 

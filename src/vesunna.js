@@ -1,9 +1,9 @@
-import { random } from './utils/random';
+import { Alea } from './lib/Alea';
+
 import { codename } from './data/codename';
 import { description } from './data/description';
 import { characters } from './data/characters';
-//import { seedrandom } from '../_/seedrandom';
-import { Alea } from './lib/Alea';
+import { random } from './utils/random';
 
 // Seed generation
 
@@ -26,7 +26,7 @@ const separators = {
 	TILDE: '~',
 	UNDERSCORE: '_'
 };
-let separator = separators.DASH;
+let separator = separators.NONE;
 
 let basic = true;
 let seed = '';
@@ -114,26 +114,22 @@ function generate() {
 
 }
 
-// Seed interpretation
+// Seed usage
 
-//let engine = new seedrandom( seed );
-let engine = new Alea( seed );
+let _engine = new Alea( seed );
 
 function reset( seed ) {
 
 	if ( seed ) vesunna.seed = seed;
-
-	//vesunna.engine = seedrandom( vesunna.seed );
-	//console.log( { seed: vesunna.seed } );
-	vesunna.engine = new Alea( vesunna.seed );
+	vesunna._engine = new Alea( vesunna.seed );
 
 }
 
-function getRandom( min, max, rounded = true ) {
+function getRandom( min = 0, max = 1, rounded = false ) {
 
-	const { engine } = vesunna;
+	const { _engine } = vesunna;
 
-	const seededRandom = engine.random();
+	const seededRandom = _engine.random();
 
 	if ( isNaN( min ) || isNaN( max ) ) return seededRandom;
 
@@ -143,9 +139,47 @@ function getRandom( min, max, rounded = true ) {
 
 }
 
+// Random helpers
+
+function int( min, max ) {
+
+	return vesunna.random( min, max, true );
+
+}
+
+function uint( max ) {
+
+	return vesunna.int( 0, max );
+
+}
+
+function item( array ) {
+
+	return array( vesunna.uint( array.length - 1 ) );
+
+}
+
+function char( string ) {
+
+	return string.charAt( vesunna.uint( string.length - 1 ) );
+
+}
+
+function bool() {
+
+	return ( vesunna.random() < 0.5 );
+
+}
+
+// Final object
+
 const vesunna = {
-	modes, mode, separators, separator, basic, seed, engine,
-	generate, reset, random: getRandom
+	_engine,
+	modes, mode, separators, separator, basic, seed,
+	generate, reset,
+	random: getRandom, int, uint, item, bool, char
 };
+
+generate();
 
 export default vesunna;
