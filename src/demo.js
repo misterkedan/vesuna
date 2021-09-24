@@ -45,6 +45,10 @@ gui.vesuna.add( vesuna, 'seed' ).onFinishChange( update ).listen();
 gui.vesuna.add( demo, LABEL );
 gui.vesuna.open();
 
+// Hide GUI on small screens/windows
+const testWidth = ( window.devicePixelRatio <= 2 ) ? 640 : 1280;
+if ( window.innerWidth < testWidth ) gui.close();
+
 // DRAW CIRCLES
 
 const canvas = document.getElementById( 'demo-canvas' );
