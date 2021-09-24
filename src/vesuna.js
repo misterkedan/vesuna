@@ -39,7 +39,7 @@ function getRandomWord( words ) {
 
 function generateCodename() {
 
-	const { basic, separator } = vesunna;
+	const { basic, separator } = vesuna;
 
 	const words = ( basic )
 		? codename.map( getRandomWord )
@@ -50,7 +50,7 @@ function generateCodename() {
 
 function generateDescription() {
 
-	const { basic, separator } = vesunna;
+	const { basic, separator } = vesuna;
 
 	const words = ( basic )
 		? [ description[ 1 ], description[ 3 ] ]
@@ -61,7 +61,7 @@ function generateDescription() {
 
 function generateGibberish() {
 
-	const { basic } = vesunna;
+	const { basic } = vesuna;
 	const { vowels, consonnants } = characters;
 
 	const length = ( basic ) ? 4 : 8;
@@ -78,7 +78,7 @@ function generateGibberish() {
 
 function generateSerial() {
 
-	const { basic } = vesunna;
+	const { basic } = vesuna;
 
 	const length = ( basic ) ? 4 : 8;
 
@@ -96,7 +96,7 @@ function generateSerial() {
 
 function generate() {
 
-	const { mode } = vesunna;
+	const { mode } = vesuna;
 
 	const defaultGenerator = generateCodename;
 
@@ -110,7 +110,7 @@ function generate() {
 	const generator = generators[ mode ] || defaultGenerator;
 	reset( generator() );
 
-	return vesunna.seed;
+	return vesuna.seed;
 
 }
 
@@ -120,14 +120,14 @@ let _engine = new Alea( seed );
 
 function reset( seed ) {
 
-	if ( seed ) vesunna.seed = seed;
-	vesunna._engine = new Alea( vesunna.seed );
+	if ( seed ) vesuna.seed = seed;
+	vesuna._engine = new Alea( vesuna.seed );
 
 }
 
 function getRandom( min = 0, max = 1, rounded = false ) {
 
-	const { _engine } = vesunna;
+	const { _engine } = vesuna;
 
 	const seededRandom = _engine.random();
 
@@ -143,37 +143,37 @@ function getRandom( min = 0, max = 1, rounded = false ) {
 
 function int( min, max ) {
 
-	return vesunna.random( min, max, true );
+	return vesuna.random( min, max, true );
 
 }
 
 function uint( max ) {
 
-	return vesunna.int( 0, max );
+	return vesuna.int( 0, max );
 
 }
 
 function item( array ) {
 
-	return array( vesunna.uint( array.length - 1 ) );
+	return array( vesuna.uint( array.length - 1 ) );
 
 }
 
 function char( string ) {
 
-	return string.charAt( vesunna.uint( string.length - 1 ) );
+	return string.charAt( vesuna.uint( string.length - 1 ) );
 
 }
 
 function bool() {
 
-	return ( vesunna.random() < 0.5 );
+	return ( vesuna.random() < 0.5 );
 
 }
 
 // Final object
 
-const vesunna = {
+const vesuna = {
 	_engine,
 	modes, mode, separators, separator, basic, seed,
 	generate, reset,
@@ -182,4 +182,4 @@ const vesunna = {
 
 generate();
 
-export default vesunna;
+export default vesuna;

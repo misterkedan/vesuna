@@ -1,8 +1,8 @@
-# Vesunna
+# Vesuna
 
 Generate and use memorable random seeds.
 
-_
+![Preview](cover.jpg)
 
 WIP
 

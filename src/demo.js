@@ -1,4 +1,4 @@
-import vesunna from 'vesunna';
+import vesuna from 'vesuna';
 import * as dat from 'dat.gui';
 
 // Demo
@@ -10,14 +10,14 @@ const demo = { [ LABEL ]: generate };
 
 function generate() {
 
-	vesunna.generate();
+	vesuna.generate();
 	update();
 
 }
 
 function update() {
 
-	const { seed, separator } = vesunna;
+	const { seed, separator } = vesuna;
 
 	const capitalize = ( string ) =>
 		string.charAt( 0 ).toUpperCase() + string.slice( 1 );
@@ -35,13 +35,13 @@ function update() {
 // GUI
 
 const gui = new dat.GUI();
-gui.vesunna = gui.addFolder( 'Vesunna' );
-gui.vesunna.add( vesunna, 'mode', vesunna.modes ).onChange( generate );
-gui.vesunna.add( vesunna, 'separator', vesunna.separators ).onChange( generate );
-gui.vesunna.add( vesunna, 'basic' ).onChange( generate );
-gui.vesunna.add( vesunna, 'seed' ).onFinishChange( update ).listen();
-gui.vesunna.add( demo, LABEL );
-gui.vesunna.open();
+gui.vesuna = gui.addFolder( 'vesuna' );
+gui.vesuna.add( vesuna, 'mode', vesuna.modes ).onChange( generate );
+gui.vesuna.add( vesuna, 'separator', vesuna.separators ).onChange( generate );
+gui.vesuna.add( vesuna, 'basic' ).onChange( generate );
+gui.vesuna.add( vesuna, 'seed' ).onFinishChange( update ).listen();
+gui.vesuna.add( demo, LABEL );
+gui.vesuna.open();
 
 // DRAW CIRCLES
 
@@ -50,7 +50,7 @@ const context = canvas.getContext( '2d' );
 
 function draw() {
 
-	vesunna.reset();
+	vesuna.reset();
 
 	const width = window.innerWidth;
 	const height = window.innerHeight;
@@ -60,16 +60,16 @@ function draw() {
 	context.globalCompositeOperation = 'source-over';
 	context.clearRect( 0, 0, width, height );
 
-	const scale = vesunna.random( 0.1, 0.5 );
+	const scale = vesuna.random( 0.1, 0.5 );
 	const maxRadius = Math.max( width, height ) * scale;
 
-	const r1 = vesunna.int( 0, 255 );
-	const g1 = vesunna.int( 0, 255 );
-	const b1 = vesunna.int( 0, 255 );
+	const r1 = vesuna.int( 0, 255 );
+	const g1 = vesuna.int( 0, 255 );
+	const b1 = vesuna.int( 0, 255 );
 
-	const r2 = vesunna.int( 0, 255 );
-	const g2 = vesunna.int( 0, 255 );
-	const b2 = vesunna.int( 0, 255 );
+	const r2 = vesuna.int( 0, 255 );
+	const g2 = vesuna.int( 0, 255 );
+	const b2 = vesuna.int( 0, 255 );
 
 	const color1 = `rgba(${r1}, ${g1}, ${b1}, 0.15)`;
 	const color2 = `rgba(${r2}, ${g2}, ${b2}, 0.15)`;
@@ -79,16 +79,16 @@ function draw() {
 	gradient.addColorStop( 1, color2 );
 	context.fillStyle = gradient;
 
-	const circles = vesunna.int( 7, 14 );
-	const ripples = vesunna.int( 3, 6 );
+	const circles = vesuna.int( 7, 14 );
+	const ripples = vesuna.int( 3, 6 );
 
 	const cicleIncrement = 1 / circles;
 	const rippleIncrement = 1 / ripples;
 
 	for ( var i = 0; i < circles; i ++ ) {
 
-		const randomX = vesunna.uint( width );
-		const randomY = vesunna.uint( height );
+		const randomX = vesuna.uint( width );
+		const randomY = vesuna.uint( height );
 
 		const radius = maxRadius * ( cicleIncrement * i );
 
@@ -120,5 +120,5 @@ function draw() {
 window.addEventListener( 'resize', draw );
 element.addEventListener( 'pointerup', generate );
 
-vesunna.separator = vesunna.separators.DASH;
+vesuna.separator = vesuna.separators.DASH;
 generate();

@@ -1,5 +1,5 @@
 {
-    "name": "vesunna",
+    "name": "vesuna",
     "version": "0.7.0",
     "description": "Generate and use memorable random seeds.",
     "author": "Pierre Keda",
@@ -20,7 +20,7 @@
         "start": "webpack serve --open --mode development"
     },
     "private": false,
-    "main": "src/vesunna.js",
-    "homepage": "https://https://github.com/pierrekeda/vesunna/",
-    "repository": "github:pierrekeda/vesunna"
+    "main": "src/vesuna.js",
+    "homepage": "https://https://github.com/pierrekeda/vesuna/",
+    "repository": "github:pierrekeda/vesuna"
 }

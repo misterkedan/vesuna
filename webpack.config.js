@@ -8,13 +8,13 @@ const config = {
 
 	build: {
 		mode: 'production',
-		entry: './src/vesunna.js',
+		entry: './src/vesuna.js',
 		output: {
 			path: path.resolve( __dirname, 'build' ),
-			filename: 'vesunna.min.js',
+			filename: 'vesuna.min.js',
 			library: {
 				type: 'umd',
-				name: 'vesunna',
+				name: 'vesuna',
 				export: 'default'
 			}
 		},
@@ -45,7 +45,7 @@ const config = {
 		},
 		resolve: {
 			alias: {
-				'vesunna': './vesunna'
+				'vesuna': './vesuna'
 			}
 		},
 		optimization,
@@ -80,7 +80,7 @@ module.exports = ( env, argv ) => {
 			...demo,
 			externals: {
 				...demo.externals,
-				vesunna: 'vesunna'
+				vesuna: 'vesuna'
 			},
 		},
 		{
