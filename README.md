@@ -22,17 +22,17 @@ Use vesuna.autoseed() to generate a short amusing description, a codename, a gib
 **Generate a wide variety of numbers**  
 Use vesuna.random() to generate pseudorandom 32-bit floats.
 
-	IMPORTANT !
-	The seeded pseudorandomness is predictable.  
-	It is unsafe for security-sensitive applications.  
-
-
 **Reproduce a specific result**   
 Once setup with a seed, vesuna.random() will produce floats in sequences that will always be the same with that exact seed. It's intended to replace Math.random() for generative applications using many randomized settings, allowing to easily save and restore an unlimited amount of pseudorandom numbers.  
 
+
+	IMPORTANT !
+	The seeded pseudorandomness is predictable.  
+	It is unsafe for security-sensitive applications. 
+
 # Installation
 
-Via [npm](https://www.npmjs.com/package/vesuna) 
+Via [npm](https://www.npmjs.com/package/vesuna).   
 
 	npm install vesuna --save
 
@@ -53,21 +53,29 @@ Or manually import [the minified build](build/vesuna.min.js).
 vesuna.seed = 'vesuna';
 
 // Generate a random float between 0 and 1, similar to Math.random()
-vesuna.random(); // Will always be 0.7621682670433074
-vesuna.random(); // Will always be 0.44742328324355185
-vesuna.random(); // Will always be 0.6701190846506506
 
-vesuna.reset(); // Resets vesuna using the current seed
+vesuna.random(); // Will always return 0.7621682670433074
+vesuna.random(); // Will always return 0.44742328324355185
+vesuna.random(); // Will always return 0.6701190846506506
 
-vesuna.random(); // Will always be 0.7621682670433074
-vesuna.random(); // Will always be 0.44742328324355185
-vesuna.random(); // Will always be 0.6701190846506506
+vesuna.reset();  // Reset the sequence
+
+vesuna.random(); // Will always return 0.7621682670433074
+vesuna.random(); // Will always return 0.44742328324355185
+vesuna.random(); // Will always return 0.6701190846506506
+
+vesuna.seed = 'new seed'; // Change the seed for another sequence
+
+vesuna.random(); // Will always return 0.12564408965408802
+vesuna.random(); // Will always return 0.3661188334226608
+vesuna.random(); // Will always return 0.6075689995195717
 ```
 
 # Autoseed
 
-You can seed Vesuna with any string you want, but it also includes an automatic seed generator, designed to create easy to memorize strings.  
-Doing this is not required before the first use, vesuna autoseeds itself on initiation.  
+You can seed Vesuna with any string, but it also includes a string generator, designed to create easy to memorize seeds.  
+
+Note: vesuna autoseeds itself on initiation.  
 
 ```javascript
 vesuna.autoseed();
@@ -112,7 +120,7 @@ vesuna.verbose = false;
 
 ## Possible outcomes
 
-This generator provides a limited number of possible outcomes, depending on vesuna.mode and vesuna.verbose. For example, using the default settings of vesuna.modes.CODENAME and vesuna.verbose=false, gives 1024 possible outcomes, which is equivalent to using an integer numerical seed picked randomly between 1 and 1024.  
+This autoseeder provides a limited number of possible seeds, depending on vesuna.mode and vesuna.verbose. For example, using the default settings (vesuna.modes.CODENAME & vesuna.verbose=false) gives 1024 possible outcomes.  
 
 **Codename**  
 1024 / 1,024,000  
@@ -128,9 +136,9 @@ Depending on letter-number RNG
 From 6,561 / 43,046,721  
 To 279,841 / 78,310,985,281  
 
-## Use without seeding
+## Use without autoseeding
 
-If you don't wanna change the current seed, just generate a random string for another use, you can use one of the following: 
+If you don't wanna change the current seed, and just want a random string for another use, you can use one of the following: 
 
 ```javascript
 vesuna.codename();
@@ -138,7 +146,7 @@ vesuna.description();
 vesuna.gibberish();
 vesuna.serial();
 ```
-Those will use the current autoseed settings, but will NOT apply the seed to vesuna like vesuna.autoseed() does.  
+Those will use the current autoseed settings, but unlike vesuna.autoseed() these methods will NOT update vesuna.seed.  
 
 # Random helpers
 
@@ -174,11 +182,12 @@ vesuna.char( string );
 
 ## Seed generation
 ```javascript
-// Generate a random string and sets it as seed
-vesuna.autoseed();
+// Set the seed manually or set an automatic seed
 // This is not mandatory, vesuna starts automatically autoseeded
+vesuna.seed = 'custom seed';
+vesuna.autoseed();
 
-// Get the seed
+// Get the current seed
 console.log( vesuna.seed ); // Ex: bluefox
 
 // Modes
@@ -188,33 +197,42 @@ vesuna.mode = vesuna.modes.GIBBERISH;   // Ex: xuve
 vesuna.mode = vesuna.modes.SERIAL;      // Ex: 58AS
 
 // Separators - Any string will work
-vesuna.separator = vesuna.separators.NONE       // Ex: bluefox
-vesuna.separator = vesuna.separators.DOT        // Ex: blue.fox
-vesuna.separator = vesuna.separators.TILDE      // Ex: blue~fox
-vesuna.separator = vesuna.separators.UNDERSCORE // Ex: blue_fox
-vesuna.separator = vesuna.separators.DASH       // Ex: blue-fox
+vesuna.separator = vesuna.separators.NONE;       // Ex: bluefox
+vesuna.separator = vesuna.separators.DOT;        // Ex: blue.fox
+vesuna.separator = vesuna.separators.TILDE;      // Ex: blue~fox
+vesuna.separator = vesuna.separators.UNDERSCORE; // Ex: blue_fox
+vesuna.separator = vesuna.separators.DASH;       // Ex: blue-fox
+
+// For more complexity
+vesuna.verbose = true;
+
+// Defaults
+vesuna.mode = vesuna.modes.CODENAME; 
+vesuna.separator = vesuna.separators.NONE;
+vesuna.verbose = false;
 ```
 
 ## Seed usage
 
 ```javascript
-// Once the seed is set, use it to generate pseudorandom numbers
-// Note that vesuna initiates with a random verbose codename seed
-// Already setup
+// Once the seed is set, use it to generate pseudorandom numbers sequences
 vesuna.random(); // Will always return 0.7621682670433074
 vesuna.random(); // Will always return 0.44742328324355185
+vesuna.random(); // Will always return 0.6701190846506506
 
-// Reset the pseudorandom generator with its current seed
-vesuna.reset();
+vesuna.reset();  // Reset the sequence
+
 vesuna.random(); // Will always return 0.7621682670433074
 vesuna.random(); // Will always return 0.44742328324355185
+vesuna.random(); // Will always return 0.6701190846506506
 
-// Setting another seed will change the sequence
-vesuna.seed = 'new seed';
+vesuna.seed = 'new seed'; // Change the seed for another sequence
+
 vesuna.random(); // Will always return 0.12564408965408802
 vesuna.random(); // Will always return 0.3661188334226608
+vesuna.random(); // Will always return 0.6075689995195717
 
-// Helper
+// Helper methods
 vesuna.random( -2, 2, true ); // min, max, rounded
 vesuna.int( -3, 3 );
 vesuna.uint( 4 ); // max

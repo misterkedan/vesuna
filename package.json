@@ -1,6 +1,6 @@
 {
     "name": "vesuna",
-    "version": "0.10.1",
+    "version": "0.10.2",
     "description": "Generate and use memorable random seeds.",
     "author": "Pierre Keda",
     "license": "MIT",
