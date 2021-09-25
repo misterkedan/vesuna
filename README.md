@@ -14,7 +14,7 @@ This library is based on David Bau's [seedrandom](https://github.com/davidbau/se
 
 **Use a string as seed**  
 Because it is easier to remember, share and differentiate than a numerical seed.  
-Ex: bluefox, redking vs 2030949, 1879546.  
+Ex: bluefox/fireking vs 2030949/1879546.  
 
 **Generate easy to remember strings**  
 Use vesuna.autoseed() to generate an amusing short description, a codename, some gibberish, or a serial number.  
