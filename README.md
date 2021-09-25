@@ -6,7 +6,7 @@ Vesuna is a small utiliy to generate and use memorable random seeds.
 
 [Demo](https://pierrekeda.github.io/vesuna/)  
 Note that the generated background will always be the same for a given seed.  
-Typing "vesuna" will give the above outcome.
+Typing "vesuna" will give the outcome above.
 
 # Credits
 
