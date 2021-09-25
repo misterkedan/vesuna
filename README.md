@@ -155,7 +155,7 @@ In addition to vesuna.random(), you can use the following, for convenience:
 vesuna.random( -1, 1 ); // Float between -1 and 1, inclusive
 vesuna.random( -2, 2, true ); // Rounded float
 vesuna.int( -3, 3 )     // Integer, same as vesuna.random( -3, 3, true )
-vesuna.uint( 4 );       // Unsigned integer
+vesuna.uint( 4 );       // Unsigned integer, same as vesuna.random( 0, 4, true)
 vesuna.bool();          // Either true or false
 vesuna.item( array );   // Item from an array
 vesuna.char( string );  // Character from a string
@@ -165,9 +165,9 @@ vesuna.char( string );  // Character from a string
 
 ## Seed generation
 ```javascript
-// Set a seed manually (not required, vesuna starts automatically autoseeded)
+// Set a seed manually (not required, vesuna begins autoseeded)
 vesuna.seed = 'custom seed';
-// Or use the autoseeding
+// Or generate one instead
 vesuna.autoseed();
 
 // Get the current seed
