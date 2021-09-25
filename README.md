@@ -17,7 +17,7 @@ Because it is easier to remember, share and differentiate than a numerical seed.
 Ex: bluefox, redking vs 2030949, 1879546.  
 
 **Generate easy to remember strings**  
-Use vesuna.autoseed() to generate a short amusing description, a codename, a gibberish word, or a serial number.  
+Use vesuna.autoseed() to generate an amusing short description, a codename, some gibberish, or a serial number.  
 
 **Generate a wide variety of numbers**  
 Use vesuna.random() to generate pseudorandom 32-bit floats.
@@ -25,10 +25,10 @@ Use vesuna.random() to generate pseudorandom 32-bit floats.
 **Reproduce a specific result**   
 Once setup with a seed, vesuna.random() will produce floats in sequences that will always be the same with that exact seed. It's intended to replace Math.random() for generative applications using many randomized settings, allowing to easily save and restore an unlimited amount of pseudorandom numbers.  
 
-
 	IMPORTANT !
-	The seeded pseudorandomness is predictable.  
-	It is unsafe for security-sensitive applications. 
+	Intended for creative / recreational use.  
+	The seeded pseudorandomness is predictable by nature.  
+	It is unsafe for security-sensitive applications.  
 
 # Installation
 
@@ -50,7 +50,7 @@ Or manually import [the minified build](build/vesuna.min.js).
 
 ```javascript
 // Manually set a seed
-vesuna.seed = 'vesuna';
+vesuna.seed = 'custom seed';
 
 // Generate a random float between 0 and 1, similar to Math.random()
 
@@ -120,7 +120,7 @@ vesuna.verbose = false;
 
 ## Possible outcomes
 
-This autoseeder provides a limited number of possible seeds, depending on vesuna.mode and vesuna.verbose. For example, using the default settings (vesuna.modes.CODENAME & vesuna.verbose=false) gives 1024 possible outcomes.  
+This autoseeder provides a limited number of possible seeds, depending on the current settings. For example, using the defaults (vesuna.modes.CODENAME & vesuna.verbose=false) gives 1024 possible outcomes.  
 
 **Codename**  
 1024 / 1,024,000  
@@ -146,7 +146,7 @@ vesuna.description();
 vesuna.gibberish();
 vesuna.serial();
 ```
-Those will use the current autoseed settings, but unlike vesuna.autoseed() these methods will NOT update vesuna.seed.  
+Those will use the current autoseed settings, but unlike vesuna.autoseed() they will NOT update vesuna.seed.  
 
 # Random helpers
 
@@ -179,12 +179,12 @@ vesuna.char( string );
 
 # Summary
 
-
 ## Seed generation
 ```javascript
-// Set the seed manually or set an automatic seed
+// Set the seed manually
 // This is not mandatory, vesuna starts automatically autoseeded
 vesuna.seed = 'custom seed';
+// Or set an automatic seed
 vesuna.autoseed();
 
 // Get the current seed
