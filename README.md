@@ -12,7 +12,7 @@ Vesuna is a small utiliy to generate and use memorable random seeds.
 This library is based on David Bau's [seedrandom](https://github.com/davidbau/seedrandom).  
 More specifically on [Alea](https://github.com/davidbau/seedrandom/blob/released/lib/alea.js), his port of [Johannes Baagøe's PRNG algorithm](https://github.com/nquinlan/better-random-numbers-for-javascript-mirror).
 
-# Objectives
+# What it's for
 
 **Use a string as seed**  
 Because it is easier to remember, share and differentiate than a numerical seed.  
@@ -137,7 +137,7 @@ To 279,841 / 78,310,985,281
 
 ## Use without autoseeding
 
-If you don't wanna change the current seed, and just want a random string for another use, you can use one of the following: 
+To leave the current seed unchanged, and just get a random string for another use:  
 
 ```javascript
 vesuna.codename();
@@ -145,7 +145,7 @@ vesuna.description();
 vesuna.gibberish();
 vesuna.serial();
 ```
-Those will use the current autoseed settings, but unlike vesuna.autoseed() they will NOT update vesuna.seed.  
+Those will use the current autoseed settings ( separator & verbose ), but unlike vesuna.autoseed() these methods will NOT update vesuna.seed.  
 
 # Random helpers
 
@@ -165,10 +165,9 @@ vesuna.char( string );  // Character from a string
 
 ## Seed generation
 ```javascript
-// Set the seed manually
-// Not required, vesuna starts automatically autoseeded
+// Set a seed manually (not required, vesuna starts automatically autoseeded)
 vesuna.seed = 'custom seed';
-// Or set an automatic seed
+// Or use the autoseeding
 vesuna.autoseed();
 
 // Get the current seed
