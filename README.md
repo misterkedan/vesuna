@@ -26,10 +26,10 @@ Use vesuna.autoseed() to generate an amusing short description, a codename, some
 Use vesuna.random() to generate as many pseudorandom 32-bit floats as you need.
 
 **Reproduce specific results**   
-Once setup with a seed, vesuna.random() will produce floats in sequences that will always be the same with that exact seed. It's intended as a Math.random() replacement for generative applications using many randomized settings, allowing to easily save and restore an exact outcome.  
+Once setup with a seed, vesuna.random() will produce floats in sequences that will always be the same with that exact seed. It is intended as a Math.random() replacement for generative applications using many randomized settings, allowing to easily save and restore an exact outcome.  
 
 	IMPORTANT !
-	Intended for personal/creative use.  
+	Made for personal/creative use.  
 	The seeded pseudorandomness is predictable by nature.  
 	It is unsafe for security-sensitive applications.  
 
