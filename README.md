@@ -23,7 +23,9 @@ Use vesuna.autoseed() to generate a short amusing description, a codename, a gib
 Use vesuna.random() to generate pseudorandom 32-bit floats.
 
 	IMPORTANT !
-	The seeded pseudorandomness is predictable, which makes it unsafe for security-sensitive applications.
+	The seeded pseudorandomness is predictable.
+	It is unsafe for security-sensitive applications.  
+
 
 **Reproduce a specific result**   
 Once setup with a seed, vesuna.random() will produce floats in sequences that will always be the same with that exact seed. It's intended to replace Math.random() for generative applications using many randomized settings, allowing to easily save and restore an unlimited amount of pseudorandom numbers.  
