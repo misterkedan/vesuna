@@ -4,7 +4,7 @@
 
 Vesuna is a small utiliy to generate and use memorable random seeds.  
 
-[Demo](https://pierrekeda.github.io/textformer/)  ( the pseudorandom generative background will always be the same for a given string )
+[Demo](https://pierrekeda.github.io/vesuna/)  ( the pseudorandom generative background will always be the same for a given string )
 
 # Credits
 
