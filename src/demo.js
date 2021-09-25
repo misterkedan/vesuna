@@ -5,14 +5,14 @@ import * as dat from 'dat.gui';
 
 const element = document.getElementById( 'demo' );
 
-const LABEL = 'GENERATE SEED';
+const LABEL = 'GENERATE';
 const demo = { [ LABEL ]: generate };
 
 vesuna.separator = vesuna.separators.DASH;
 
 function generate() {
 
-	vesuna.generate();
+	vesuna.autoseed();
 	update();
 
 }
@@ -40,7 +40,7 @@ const gui = new dat.GUI();
 gui.vesuna = gui.addFolder( 'Vesuna' );
 gui.vesuna.add( vesuna, 'mode', vesuna.modes ).onChange( generate );
 gui.vesuna.add( vesuna, 'separator', vesuna.separators ).onChange( generate );
-gui.vesuna.add( vesuna, 'basic' ).onChange( generate );
+gui.vesuna.add( vesuna, 'verbose' ).onChange( generate );
 gui.vesuna.add( vesuna, 'seed' ).onFinishChange( update ).listen();
 gui.vesuna.add( demo, LABEL );
 gui.vesuna.open();
@@ -125,6 +125,5 @@ function draw() {
 
 window.addEventListener( 'resize', draw );
 element.addEventListener( 'pointerup', generate );
-
 
 generate();

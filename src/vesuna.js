@@ -1,21 +1,16 @@
 import { Alea } from './lib/Alea';
 
-import { codename } from './data/codename';
-import { description } from './data/description';
+import { codenames } from './data/codenames';
+import { descriptions } from './data/descriptions';
 import { characters } from './data/characters';
-import { random } from './utils/random';
 
 // Seed generation
 
-const CODENAME = 'codename';
-const DESCRIPTION = 'description';
-const GIBBERISH = 'gibberish';
-const SERIAL = 'serial';
 const modes = {
-	CODENAME: CODENAME,
-	DESCRIPTION: DESCRIPTION,
-	GIBBERISH: GIBBERISH,
-	SERIAL: SERIAL
+	CODENAME: 'codename',
+	DESCRIPTION: 'description',
+	GIBBERISH: 'gibberish',
+	SERIAL: 'serial'
 };
 let mode = modes.CODENAME;
 
@@ -28,47 +23,47 @@ const separators = {
 };
 let separator = separators.NONE;
 
-let basic = true;
-let seed = '';
+let verbose = false;
+let _seed = String( Math.random() );
 
-function getRandomWord( words ) {
+function getWord( words ) {
 
-	return random.item( words );
+	return vesuna.item( words );
 
 }
 
-function generateCodename() {
+function codename() {
 
-	const { basic, separator } = vesuna;
+	const { verbose, separator } = vesuna;
 
-	const words = ( basic )
-		? codename.map( getRandomWord )
-		: [ ...codename.map( getRandomWord ), random.uint( 999 ) ];
+	const words = ( verbose )
+		? [ ...codenames.map( getWord ), vesuna.uint( 999 ) ]
+		: codenames.map( getWord );
 	return words.join( separator );
 
 }
 
-function generateDescription() {
+function description() {
 
-	const { basic, separator } = vesuna;
+	const { verbose, separator } = vesuna;
 
-	const words = ( basic )
-		? [ description[ 1 ], description[ 3 ] ]
-		: description;
-	return words.map( getRandomWord ).join( separator );
+	const words = ( verbose )
+		? descriptions
+		: [ descriptions[ 1 ], descriptions[ 3 ] ];
+	return words.map( getWord ).join( separator );
 
 }
 
-function generateGibberish() {
+function gibberish() {
 
-	const { basic } = vesuna;
+	const { verbose } = vesuna;
 	const { vowels, consonnants } = characters;
 
-	const length = ( basic ) ? 4 : 8;
+	const length = ( verbose ) ? 8 : 4;
 	const letters = Array.from( { length }, ( _, i ) => {
 
 		const pool = ( i % 2 ) ?  vowels : consonnants;
-		return random.item( pool );
+		return vesuna.item( pool );
 
 	} );
 
@@ -76,61 +71,53 @@ function generateGibberish() {
 
 }
 
-function generateSerial() {
+function serial() {
 
-	const { basic } = vesuna;
+	const { verbose } = vesuna;
 
-	const length = ( basic ) ? 4 : 8;
+	const length = ( verbose ) ? 8 : 4;
 
 	const filtered = 'ilo'; // To avoid Il/o0 confusion
 	const pool = characters.alphabet
 		.filter( letter => ! filtered.includes( letter ) );
 
 	const chars = Array.from( { length }, () =>
-		random.boolean()
-			? random.item( pool ).toUpperCase()
-			: random.int( 1, 9 )
+		vesuna.bool()
+			? vesuna.item( pool ).toUpperCase()
+			: vesuna.int( 1, 9 )
 	);
 	return chars.join( '' );
 
 }
 
-function generate() {
+function autoseed() {
 
 	const { mode } = vesuna;
 
-	const defaultGenerator = generateCodename;
-
-	const generators = {
-		[ CODENAME ]: generateCodename,
-		[ DESCRIPTION ]: generateDescription,
-		[ GIBBERISH ]: generateGibberish,
-		[ SERIAL ]: generateSerial,
-	};
-
+	const defaultGenerator = codename;
+	const generators = { codename, description, gibberish, serial };
 	const generator = generators[ mode ] || defaultGenerator;
-	reset( generator() );
 
+	vesuna.seed = generator();
 	return vesuna.seed;
 
 }
 
 // Seed usage
 
-let _engine = new Alea( seed );
+let prng = new Alea( _seed );
 
-function reset( seed ) {
+function reset() {
 
-	if ( seed ) vesuna.seed = seed;
-	vesuna._engine = new Alea( vesuna.seed );
+	vesuna.prng = new Alea( vesuna.seed );
 
 }
 
-function getRandom( min = 0, max = 1, rounded = false ) {
+function random( min = 0, max = 1, rounded = false ) {
 
-	const { _engine } = vesuna;
+	const { prng } = vesuna;
 
-	const seededRandom = _engine.random();
+	const seededRandom = prng.random();
 
 	if ( isNaN( min ) || isNaN( max ) ) return seededRandom;
 
@@ -156,7 +143,7 @@ function uint( max ) {
 
 function item( array ) {
 
-	return array( vesuna.uint( array.length - 1 ) );
+	return array[ vesuna.uint( array.length - 1 ) ];
 
 }
 
@@ -175,12 +162,26 @@ function bool() {
 // Final object
 
 const vesuna = {
-	_engine,
-	modes, mode, separators, separator, basic, seed,
-	generate, reset,
-	random: getRandom, int, uint, item, bool, char
+
+	modes, mode, separators, separator, verbose, prng,
+	codename, description, gibberish, serial, autoseed,
+	reset, random, int, uint, item, bool, char,
+
+	get seed() {
+
+		return _seed;
+
+	},
+
+	set seed( seed ) {
+
+		_seed = seed;
+		this.reset();
+
+	}
+
 };
 
-generate();
+autoseed();
 
 export default vesuna;

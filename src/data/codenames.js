@@ -12,6 +12,6 @@ const things = [
 	'eagle', 'tiger', 'lion', 'puma', 'wolf', 'panther', 'dove', 'fox'
 ];
 
-const codename = [ adjectives, things ];
+const codenames = [ adjectives, things ];
 
-export { codename };
+export { codenames };
