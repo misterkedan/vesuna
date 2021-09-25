@@ -32,7 +32,7 @@ Once setup with a seed, vesuna.random() will produce floats in sequences that wi
 
 # Installation
 
-Via [npm](https://www.npmjs.com/package/textformer) 
+Via [npm](https://www.npmjs.com/package/vesuna) 
 
 	npm install vesuna --save
 
