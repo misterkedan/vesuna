@@ -1,5 +1,5 @@
 import { Alea } from './lib/Alea';
-
+import { utils } from './utils';
 import { codenames } from './data/codenames';
 import { descriptions } from './data/descriptions';
 import { characters } from './data/characters';
@@ -28,7 +28,7 @@ let _seed = String( Math.random() );
 
 function getWord( words ) {
 
-	return vesuna.item( words );
+	return utils.random.item( words );
 
 }
 
@@ -37,7 +37,7 @@ function codename() {
 	const { verbose, separator } = vesuna;
 
 	const words = ( verbose )
-		? [ ...codenames.map( getWord ), vesuna.uint( 999 ) ]
+		? [ ...codenames.map( getWord ), utils.random.uint( 999 ) ]
 		: codenames.map( getWord );
 	return words.join( separator );
 
@@ -63,7 +63,7 @@ function gibberish() {
 	const letters = Array.from( { length }, ( _, i ) => {
 
 		const pool = ( i % 2 ) ?  vowels : consonnants;
-		return vesuna.item( pool );
+		return utils.random.item( pool );
 
 	} );
 
@@ -83,8 +83,8 @@ function serial() {
 
 	const chars = Array.from( { length }, () =>
 		vesuna.bool()
-			? vesuna.item( pool ).toUpperCase()
-			: vesuna.int( 1, 9 )
+			? utils.random.item( pool ).toUpperCase()
+			: utils.random.int( 1, 9 )
 	);
 	return chars.join( '' );
 
