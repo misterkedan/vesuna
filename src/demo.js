@@ -41,7 +41,7 @@ gui.vesuna = gui.addFolder( 'Vesuna' );
 gui.vesuna.add( vesuna, 'mode', vesuna.modes ).onChange( generate );
 gui.vesuna.add( vesuna, 'separator', vesuna.separators ).onChange( generate );
 gui.vesuna.add( vesuna, 'verbose' ).onChange( generate );
-gui.vesuna.add( vesuna, 'seed' ).onFinishChange( update ).listen();
+gui.vesuna.add( vesuna, 'seed' ).onChange( update ).listen();
 gui.vesuna.add( demo, LABEL );
 gui.vesuna.open();
 
@@ -80,7 +80,7 @@ function draw() {
 	const color1 = `rgba(${r1}, ${g1}, ${b1}, 0.15)`;
 	const color2 = `rgba(${r2}, ${g2}, ${b2}, 0.15)`;
 
-	const gradient = context.createLinearGradient( width / 3, 0, width * 2 / 3, 0 );
+	const gradient = context.createLinearGradient( 0, 0, width, 0 );
 	gradient.addColorStop( 0, color1 );
 	gradient.addColorStop( 1, color2 );
 	context.fillStyle = gradient;
