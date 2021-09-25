@@ -1,7 +1,11 @@
 import vesuna from 'vesuna';
 import * as dat from 'dat.gui';
 
-// Demo
+/*-----------------------------------------------------------------------------/
+
+	Demo
+
+/-----------------------------------------------------------------------------*/
 
 const element = document.getElementById( 'demo' );
 
@@ -34,7 +38,11 @@ function update() {
 
 }
 
-// GUI
+/*-----------------------------------------------------------------------------/
+
+	GUI
+
+/-----------------------------------------------------------------------------*/
 
 const gui = new dat.GUI();
 gui.vesuna = gui.addFolder( 'Vesuna' );
@@ -49,7 +57,11 @@ gui.vesuna.open();
 const testWidth = ( window.devicePixelRatio <= 2 ) ? 640 : 1280;
 if ( window.innerWidth < testWidth ) gui.close();
 
-// DRAW CIRCLES
+/*-----------------------------------------------------------------------------/
+
+	Generative background
+
+/-----------------------------------------------------------------------------*/
 
 const canvas = document.getElementById( 'demo-canvas' );
 const context = canvas.getContext( '2d' );
@@ -113,15 +125,21 @@ function draw() {
 
 	}
 
-	const background = context.createLinearGradient( 0, 0, 0, height );
-	background.addColorStop( 0, color1 );
-	background.addColorStop( 1, color2 );
-	context.fillStyle = background;
+	const saturationGradient = context.createLinearGradient( 0, 0, 0, height );
+	saturationGradient.addColorStop( 0, color1 );
+	saturationGradient.addColorStop( 1, color2 );
+	context.fillStyle = saturationGradient;
 
 	context.globalCompositeOperation = 'saturation';
 	context.fillRect( 0, 0, width, height );
 
 }
+
+/*-----------------------------------------------------------------------------/
+
+	Init
+
+/-----------------------------------------------------------------------------*/
 
 window.addEventListener( 'resize', draw );
 element.addEventListener( 'pointerup', generate );

@@ -4,11 +4,13 @@
 
 Vesuna is a small utiliy to generate and use memorable random seeds.  
 
-[Demo](https://pierrekeda.github.io/vesuna/)  ( the pseudorandom generative background will always be the same for a given string )
+[Demo](https://pierrekeda.github.io/vesuna/)  
+*The generated background will always be the same for a given seed.*
 
 # Credits
 
-This library is based on David Bau's [seedrandom](https://github.com/davidbau/seedrandom) (and more exactly on [Alea](https://github.com/davidbau/seedrandom/blob/released/lib/alea.js), his port of [Johannes Baagøe's PRNG algorithm](https://github.com/nquinlan/better-random-numbers-for-javascript-mirror)).
+This library is based on David Bau's [seedrandom](https://github.com/davidbau/seedrandom).  
+More specifically on [Alea](https://github.com/davidbau/seedrandom/blob/released/lib/alea.js), his port of [Johannes Baagøe's PRNG algorithm](https://github.com/nquinlan/better-random-numbers-for-javascript-mirror).
 
 # Objectives
 
@@ -20,7 +22,7 @@ Ex: bluefox/fireking vs 2030949/1879546.
 Use vesuna.autoseed() to generate an amusing short description, a codename, some gibberish, or a serial number.  
 
 **Generate a wide variety of numbers**  
-Use vesuna.random() to generate pseudorandom 32-bit floats.
+Use vesuna.random() to generate as many pseudorandom 32-bit floats as you need.
 
 **Reproduce a specific result**   
 Once setup with a seed, vesuna.random() will produce floats in sequences that will always be the same with that exact seed. It's intended to replace Math.random() for generative applications using many randomized settings, allowing to easily save and restore an unlimited amount of pseudorandom numbers.  
@@ -88,13 +90,6 @@ console.log( vesuna.seed ); // Ex: bluefox
 There are a few settings to customize the random seeds you can get.
 
 ```javascript
-// Separate words using a symbol (for urls)
-vesuna.separator = vesuna.separators.NONE       // Ex: bluefox
-vesuna.separator = vesuna.separators.DOT        // Ex: blue.fox
-vesuna.separator = vesuna.separators.TILDE      // Ex: blue~fox
-vesuna.separator = vesuna.separators.UNDERSCORE // Ex: blue_fox
-vesuna.separator = vesuna.separators.DASH       // Ex: blue-fox
-
 // Set vesuna.verbose to true for more complex seeds
 vesuna.verbose = true;
 vesuna.autoseed(); // Ex: blue-fox-428
@@ -102,15 +97,19 @@ vesuna.autoseed(); // Ex: blue-fox-428
 // Different modes for different possible outcomes
 vesuna.mode = vesuna.modes.CODENAME;
 vesuna.autoseed(); // Ex: blue-fox / blue-fox-428
-
 vesuna.mode = vesuna.modes.DESCRIPTION;
 vesuna.autoseed(); // Ex: sneezing-penguin / loudly-sneezing-giant-penguin
-
 vesuna.mode = vesuna.modes.GIBBERISH;
 vesuna.autoseed(); // Ex: xuve / xuvetemi
-
 vesuna.mode = vesuna.modes.SERIAL;
 vesuna.autoseed(); // Ex: 58AS / 58AS39KG
+
+// Separate words using a symbol (for urls)
+vesuna.separator = vesuna.separators.NONE       // Ex: bluefox
+vesuna.separator = vesuna.separators.DASH       // Ex: blue-fox
+vesuna.separator = vesuna.separators.DOT        // Ex: blue.fox
+vesuna.separator = vesuna.separators.TILDE      // Ex: blue~fox
+vesuna.separator = vesuna.separators.UNDERSCORE // Ex: blue_fox
 
 // Default settings
 vesuna.separator = vesuna.separators.NONE;
@@ -131,7 +130,7 @@ This autoseeder provides a limited number of possible seeds, depending on the cu
 **Gibberish**  
 11,025 / 121,550,625  
 
-**Serial**
+**Serial**  
 Depending on letter-number RNG  
 From 6,561 / 43,046,721  
 To 279,841 / 78,310,985,281  
@@ -153,28 +152,13 @@ Those will use the current autoseed settings, but unlike vesuna.autoseed() they 
 In addition to vesuna.random(), you can use the following, for convenience:
 
 ```javascript
-//Float between -1 and 1, inclusive
-vesuna.random( -1, 1 );
-
-//Rounded float between -2 and 2, inclusive
-vesuna.random( -2, 2, true );
-
-// Integer between -3 and 3, inclusive
-// Equivalent to vesuna.random( -3, 3, true )
-vesuna.int( -3, 3 )
-
-// Unsigned integer between 0 and 4, inclusive
-// Equivalent to vesuna.random( 0, 4, true ), or vesuna.int( 0, 4 );
-vesuna.uint( 4 );
-
-// Boolean, either true or false
-vesuna.bool();
-
-// Item from an array
-vesuna.item( array );
-
-// Character from a string
-vesuna.char( string );
+vesuna.random( -1, 1 ); // Float between -1 and 1, inclusive
+vesuna.random( -2, 2, true ); // Rounded float
+vesuna.int( -3, 3 )     // Integer, same as vesuna.random( -3, 3, true )
+vesuna.uint( 4 );       // Unsigned integer
+vesuna.bool();          // Either true or false
+vesuna.item( array );   // Item from an array
+vesuna.char( string );  // Character from a string
 ```
 
 # Summary
@@ -182,7 +166,7 @@ vesuna.char( string );
 ## Seed generation
 ```javascript
 // Set the seed manually
-// This is not mandatory, vesuna starts automatically autoseeded
+// Not required, vesuna starts automatically autoseeded
 vesuna.seed = 'custom seed';
 // Or set an automatic seed
 vesuna.autoseed();
@@ -232,10 +216,11 @@ vesuna.random(); // Will always return 0.12564408965408802
 vesuna.random(); // Will always return 0.3661188334226608
 vesuna.random(); // Will always return 0.6075689995195717
 
+vesuna.random( 0, 1, false ); // Defaults min, max, rounded
+
 // Helper methods
-vesuna.random( -2, 2, true ); // min, max, rounded
 vesuna.int( -3, 3 );
-vesuna.uint( 4 ); // max
+vesuna.uint( 4 );
 vesuna.bool();
 vesuna.item( array );
 vesuna.char( string );
