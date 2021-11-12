@@ -9,6 +9,8 @@ const { modes, separators, codenames, descriptions, letters } = SeedGenerator;
 
 const vesuna = {
 
+	Alea, Random, SeedGenerator, Vesuna,
+
 	modes, separators, codenames, descriptions, letters,
 
 	/*-----------------------------------------------------------------------------/
@@ -157,4 +159,4 @@ export { Random };
 export { SeedGenerator };
 export { Vesuna };
 
-export default vesuna;
+export default { Alea, Random, SeedGenerator, Vesuna };

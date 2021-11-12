@@ -1,4 +1,4 @@
-import vesuna from 'vesuna';
+import { Vesuna } from 'vesuna';
 import * as dat from 'dat.gui';
 
 /*-----------------------------------------------------------------------------/
@@ -11,6 +11,8 @@ const element = document.getElementById( 'demo' );
 
 const LABEL = 'GENERATE';
 const demo = { [ LABEL ]: generate };
+
+const vesuna = new Vesuna();
 
 vesuna.separator = vesuna.separators.DASH;
 

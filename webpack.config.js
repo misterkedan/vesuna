@@ -14,7 +14,7 @@ const config = {
 			filename: 'vesuna.min.js',
 			library: {
 				type: 'umd',
-				name: 'vesuna',
+				name: 'VESUNA',
 				export: 'default'
 			}
 		},
@@ -80,7 +80,7 @@ module.exports = ( env, argv ) => {
 			...demo,
 			externals: {
 				...demo.externals,
-				vesuna: 'vesuna'
+				vesuna: 'VESUNA'
 			},
 		},
 		{

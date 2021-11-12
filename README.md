@@ -5,8 +5,7 @@
 Vesuna is a small utiliy to generate and use memorable random seeds.  
 
 [Demo](https://pierrekeda.github.io/vesuna/)  
-Note that the generated background will always be the same for a given seed.  
-Typing "vesuna" will give the outcome above.
+Note that the generated background will always be the same for a given seed, despite being pseudorandomly generated. Typing "vesuna" in the "seed" input will give the exact same outcome as above.  
 
 # Credits
 
@@ -28,7 +27,7 @@ Use vesuna.random() to generate as many pseudorandom 32-bit floats as you need.
 **Reproduce specific results**   
 Once setup with a seed, vesuna.random() will produce floats in sequences that will always be the same with that exact seed. It is intended as a Math.random() replacement for generative applications using many randomized settings, allowing to easily save and restore an exact outcome.  
 
-	IMPORTANT !
+	DISCLAIMER: 
 	Made for personal/creative use.  
 	The seeded pseudorandomness is predictable by nature.  
 	It is unsafe for security-sensitive applications.  
@@ -40,7 +39,9 @@ Via [npm](https://www.npmjs.com/package/vesuna).
 	npm install vesuna --save
 
 ```javascript
-import vesuna from 'vesuna';
+import { Vesuna } from 'vesuna';
+
+const vesuna = new Vesuna();
 ```
 
 Or manually import [the minified build](build/vesuna.min.js).
@@ -49,9 +50,14 @@ Or manually import [the minified build](build/vesuna.min.js).
 <script src="vesuna.min.js"></script>
 ```
 
+```javascript
+const vesuna = new VESUNA.Vesuna();
+```
+
 # Basic usage
 
 ```javascript
+
 // Manually set a seed (case sensitive)
 vesuna.seed = 'custom seed';
 
@@ -76,14 +82,19 @@ vesuna.random(); // Will always return 0.6075689995195717
 
 # Autoseed
 
-You can seed Vesuna with any string, but it also includes a string generator, designed to create easy to memorize seeds.  
+You can seed a Vesuna instanceswith any string, but it also includes a string generator, designed to create easy to memorize seeds.  
 
-Note: vesuna begins autoseeded.  
+Note: Vesuna instances autoseed by default.  
 
 ```javascript
-vesuna.autoseed();
+let vesuna = new Vesuna( 'foobar' );
+console.log( vesuna.seed ); // foobar
 
+vesuna.autoseed();
 console.log( vesuna.seed ); // Ex: bluefox
+
+vesuna = new Vesuna();
+console.log( vesuna.seed ); // Ex: fireking
 ```
 
 ## Settings
@@ -108,12 +119,16 @@ vesuna.autoseed(); // xuve, xuvetemi
 vesuna.mode = vesuna.modes.SERIAL;
 vesuna.autoseed(); // 58AS, 58AS39KG
 
-// Separate words using a symbol (for urls)
-vesuna.separator = vesuna.separators.NONE       // bluefox
-vesuna.separator = vesuna.separators.DASH       // blue-fox
-vesuna.separator = vesuna.separators.DOT        // blue.fox
-vesuna.separator = vesuna.separators.TILDE      // blue~fox
-vesuna.separator = vesuna.separators.UNDERSCORE // blue_fox
+// Separate words using a symbol
+vesuna.separator = vesuna.separators.NONE;       // bluefox
+vesuna.separator = vesuna.separators.DASH;       // blue-fox
+vesuna.separator = vesuna.separators.DOT;        // blue.fox
+vesuna.separator = vesuna.separators.SLASH;      // blue/fox
+vesuna.separator = vesuna.separators.SPACE;      // blue fox
+vesuna.separator = vesuna.separators.TILDE;      // blue~fox
+vesuna.separator = vesuna.separators.UNDERSCORE; // blue_fox
+// Can be any string
+vesuna.separator = '+'; // blue+fox
 
 // Default settings
 vesuna.separator = vesuna.separators.NONE;
@@ -169,14 +184,21 @@ vesuna.char( string );  // Character from a string
 
 ## Seed generation
 ```javascript
+
+// Create an instance, autoseeded
+const vesuna = new Vesuna();
+console.log( vesuna.seed ); // bluefox
+
+// Create an instance, manual seed
+const vesuna2 = new Vesuna( 'foobar' );
+console.log( vesuna.seed ); // foobar
+
 // Generate a seed
 vesuna.autoseed();
+console.log( vesuna.seed ); // fireking
 
 // Or set a seed manually
 vesuna.seed = 'custom seed';
-
-// Get the current seed
-console.log( vesuna.seed ); // bluefox
 
 // Modes
 vesuna.mode = vesuna.modes.CODENAME;    // blue-fox
@@ -184,12 +206,16 @@ vesuna.mode = vesuna.modes.DESCRIPTION; // sneezing-penguin
 vesuna.mode = vesuna.modes.GIBBERISH;   // xuve
 vesuna.mode = vesuna.modes.SERIAL;      // 58AS
 
-// Separators - Any string will work
+// Separators
 vesuna.separator = vesuna.separators.NONE;       // bluefox
+vesuna.separator = vesuna.separators.DASH;       // blue-fox
 vesuna.separator = vesuna.separators.DOT;        // blue.fox
+vesuna.separator = vesuna.separators.SLASH;      // blue/fox
+vesuna.separator = vesuna.separators.SPACE;      // blue fox
 vesuna.separator = vesuna.separators.TILDE;      // blue~fox
 vesuna.separator = vesuna.separators.UNDERSCORE; // blue_fox
-vesuna.separator = vesuna.separators.DASH;       // blue-fox
+// Can be any string
+vesuna.separator = '+'; // blue+fox
 
 // For more complexity
 vesuna.verbose = true;

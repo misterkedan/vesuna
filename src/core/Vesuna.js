@@ -38,6 +38,12 @@ class Vesuna extends Random {
 
 	}
 
+	/*-------------------------------------------------------------------------/
+
+		Getters & Setters
+
+	/-------------------------------------------------------------------------*/
+
 	get generator() {
 
 		if ( ! this._generator ) {
@@ -67,6 +73,84 @@ class Vesuna extends Random {
 
 		this._seed = value;
 		this.reset();
+
+	}
+
+	/*-------------------------------------------------------------------------/
+
+		Generator shortcuts
+
+	/-------------------------------------------------------------------------*/
+
+	codename() {
+
+		return this.generator.codename();
+
+	}
+
+	description() {
+
+		return this.generator.description();
+
+	}
+
+	gibberish() {
+
+		return this.generator.gibberish();
+
+	}
+
+	serial() {
+
+		return this.generator.serial();
+
+	}
+
+	get mode() {
+
+		return this.generator.mode;
+
+	}
+
+	set mode( value ) {
+
+		this.generator.mode = value;
+
+	}
+
+	get separator() {
+
+		return this.generator.separator;
+
+	}
+
+	set separator( value ) {
+
+		this.generator.separator = value;
+
+	}
+
+	get verbose() {
+
+		return this.generator.verbose;
+
+	}
+
+	set verbose( value ) {
+
+		this.generator.verbose = value;
+
+	}
+
+	get modes() {
+
+		return SeedGenerator.modes;
+
+	}
+
+	get separators() {
+
+		return SeedGenerator.separators;
 
 	}
 
