@@ -107,7 +107,7 @@ class SeedGenerator {
 			.filter( letter => ! filtered.includes( letter ) );
 
 		const chars = Array.from( { length }, () =>
-			random.bool()
+			random.boolean()
 				? random.item( pool ).toUpperCase()
 				: random.int( 1, 9 )
 		);

@@ -2,7 +2,7 @@
 
 ![Preview](cover.jpg)
 
-Vesuna is a small utiliy to generate and use memorable random seeds.  
+Vesuna is a tiny utiliy library, to generate and use memorable random seeds.  
 
 [Demo](https://pierrekeda.github.io/vesuna/)  
 Note that the generated background will always be the same for a given seed, despite being pseudorandomly generated. Typing "vesuna" in the "seed" input will give the exact same outcome as above.  
@@ -22,7 +22,7 @@ Ex: bluefox/fireking vs 2030949/1879546.
 Use vesuna.autoseed() to generate an amusing short description, a codename, some gibberish, or a serial number.  
 
 **Generate a wide variety of numbers**  
-Use vesuna.random() to generate as many pseudorandom 32-bit floats as you need.
+Use vesuna.random() to generate pseudorandom 32-bit floats between 0 and 1. You can generate as many as you need, and also can use some built-in helper methods to generate uints, booleans etc.  
 
 **Reproduce specific results**   
 Once setup with a seed, vesuna.random() will produce floats in sequences that will always be the same with that exact seed. It is intended as a Math.random() replacement for generative applications using many randomized settings, allowing to easily save and restore an exact outcome.  
@@ -171,11 +171,12 @@ Those will use the current autoseed settings ( separator & verbose ), but unlike
 In addition to vesuna.random(), you can use the following, for convenience:
 
 ```javascript
-vesuna.random( -1, 1 ); // Float between -1 and 1, inclusive
-vesuna.random( -2, 2, true ); // Rounded float
-vesuna.int( -3, 3 )     // Integer, same as vesuna.random( -3, 3, true )
-vesuna.uint( 4 );       // Unsigned integer, same as vesuna.random( 0, 4, true)
-vesuna.bool();          // Either true or false
+vesuna.value()			// Alias for vesuna.random()
+vesuna.number( -1, 1 ); // Float between -1 and 1 inclusive
+vesuna.number( -1, 1, true ); // -1, 0, 1 ( rounded )
+vesuna.int( -2, 2 )     // -2, -1, 0, 1, 2
+vesuna.uint( 3 );       // 0, 1, 2, 3
+vesuna.boolean();       // Either true or false
 vesuna.item( array );   // Item from an array
 vesuna.char( string );  // Character from a string
 ```
@@ -246,12 +247,12 @@ vesuna.random(); // Will always return 0.12564408965408802
 vesuna.random(); // Will always return 0.3661188334226608
 vesuna.random(); // Will always return 0.6075689995195717
 
-vesuna.random( 0, 1, false ); // Defaults min, max, rounded
-
 // Helper methods
-vesuna.int( -3, 3 );
-vesuna.uint( 4 );
-vesuna.bool();
+vesuna.value();
+vesuna.number( -1, 1 );
+vesuna.int( -2, 2 );
+vesuna.uint( 3 );
+vesuna.boolean();
 vesuna.item( array );
 vesuna.char( string );
 ```

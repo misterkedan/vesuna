@@ -80,7 +80,7 @@ function draw() {
 	context.globalCompositeOperation = 'source-over';
 	context.clearRect( 0, 0, width, height );
 
-	const scale = vesuna.random( 0.1, 0.5 );
+	const scale = vesuna.number( 0.1, 0.5 );
 	const maxRadius = Math.max( width, height ) * scale;
 
 	const r1 = vesuna.int( 0, 255 );

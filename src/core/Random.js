@@ -15,21 +15,40 @@ class Random {
 	}
 
 	/**
-	 * Returns by default a pseudorandom float between 0 and 1 inclusive.
+	 * Returns a pseudorandom float between 0 and 1.
 	 * Will be a 32-bit float if the prng is an Alea instance.
-	 * Can be 32-64 bits, depending on browsers, if the prng is Math.random.
+	 * Can vary depending on browsers ( 32-64 bits ) if the prng is Math.
 	 *
-	 * This float can then be scaled using the min/max parameters, and
-	 * rounded to produce an integer.
+	 * @returns {Number}	A pseudorandom float between 0 and 1.
+	 */
+	random() {
+
+		return this.prng.random();
+
+	}
+
+	/**
+	 * Alias for the random() method.
+	 *
+	 * @returns {Number}	A pseudorandom float between 0 and 1.
+	 */
+	value() {
+
+		return this.random();
+
+	}
+
+	/**
+	 * Returns a pseudorandom number.
 	 *
 	 * @param 	{Number} 	min 		Minimum value ( inclusive ).
 	 * @param 	{Number} 	max 		Maximum value ( inclusive ).
 	 * @param 	{Boolean} 	rounded		Round the number before returning.
 	 * @returns {Number} 	The pseudorandomly generated number.
 	 */
-	random( min = 0, max = 1, rounded = false ) {
+	number( min = 0, max = 1, rounded = false ) {
 
-		const randomValue = this.prng.random();
+		const randomValue = this.value();
 
 		if ( isNaN( min ) || isNaN( max ) ) return randomValue;
 
@@ -48,7 +67,7 @@ class Random {
 	 */
 	int( min, max ) {
 
-		return this.random( min, max, true );
+		return this.number( min, max, true );
 
 	}
 
@@ -69,7 +88,7 @@ class Random {
 	 *
 	 * @returns {Boolean}	The pseudorandomly generated boolean.
 	 */
-	bool() {
+	boolean() {
 
 		return ( this.random() < 0.5 );
 
