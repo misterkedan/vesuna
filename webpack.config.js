@@ -8,7 +8,7 @@ const config = {
 
 	build: {
 		mode: 'production',
-		entry: './src/vesuna.js',
+		entry: './src/main.js',
 		output: {
 			path: path.resolve( __dirname, 'build' ),
 			filename: 'vesuna.min.js',
@@ -45,7 +45,7 @@ const config = {
 		},
 		resolve: {
 			alias: {
-				'vesuna': './vesuna'
+				'vesuna': './main.js'
 			}
 		},
 		optimization,

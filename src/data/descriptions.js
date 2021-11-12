@@ -26,6 +26,4 @@ const nouns = [
 	'bear', 'wizard', 'pirate', 'knight'
 ];
 
-const descriptions = [ adverbs, verbs, adjectives, nouns ];
-
-export { descriptions };
+export default { adverbs, verbs, adjectives, nouns };
