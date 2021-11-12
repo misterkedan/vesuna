@@ -1,6 +1,6 @@
 {
     "name": "vesuna",
-    "version": "2.0.0-beta",
+    "version": "2.0.0-beta.2",
     "description": "Generate and use memorable random seeds.",
     "author": "Pierre Keda",
     "license": "MIT",
@@ -20,7 +20,7 @@
         "start": "webpack serve --open --mode development"
     },
     "private": false,
-    "main": "src/vesuna.js",
+    "main": "src/main.js",
     "homepage": "https://https://github.com/pierrekeda/vesuna/",
     "repository": "github:pierrekeda/vesuna"
 }
