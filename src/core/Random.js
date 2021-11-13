@@ -32,7 +32,7 @@ class Random {
 	 *
 	 * @returns {Number}	A pseudorandom float between 0 and 1.
 	 */
-	value() {
+	amount() {
 
 		return this.random();
 
@@ -41,28 +41,28 @@ class Random {
 	/**
 	 * Returns a pseudorandom number.
 	 *
-	 * @param 	{Number} 	min 		Minimum value ( inclusive ).
-	 * @param 	{Number} 	max 		Maximum value ( inclusive ).
+	 * @param 	{Number} 	min 		Minimum number ( inclusive ).
+	 * @param 	{Number} 	max 		Maximum number ( inclusive ).
 	 * @param 	{Boolean} 	rounded		Round the number before returning.
 	 * @returns {Number} 	The pseudorandomly generated number.
 	 */
 	number( min = 0, max = 1, rounded = false ) {
 
-		const randomValue = this.value();
+		const random = this.random();
 
-		if ( isNaN( min ) || isNaN( max ) ) return randomValue;
+		if ( isNaN( min ) || isNaN( max ) ) return random;
 
 		return ( rounded )
-			?  Math.floor( randomValue * ( max - min + 1 ) + min )
-			: randomValue * ( max - min ) + min;
+			?  Math.floor( random * ( max - min + 1 ) + min )
+			: random * ( max - min ) + min;
 
 	}
 
 	/**
 	 * Returns a pseudorandom integer.
 	 *
-	 * @param 	{Number}	min		Minimum value ( inclusive ).
-	 * @param 	{Number}	max		Maximum value ( inclusive ).
+	 * @param 	{Number}	min		Minimum number ( inclusive ).
+	 * @param 	{Number}	max		Maximum number ( inclusive ).
 	 * @returns {Number}	The pseudorandomly generated integer.
 	 */
 	int( min, max ) {
@@ -74,7 +74,7 @@ class Random {
 	/**
 	 * Returns a pseudorandom unsigned integer.
 	 *
-	 * @param 	{Number}	max		Maximum value ( inclusive ).
+	 * @param 	{Number}	max		Maximum number ( inclusive ).
 	 * @returns {Number}	The pseudorandomly generated unsigned integer.
 	 */
 	uint( max ) {

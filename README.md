@@ -171,7 +171,7 @@ Those will use the current autoseed settings ( separator & verbose ), but unlike
 In addition to vesuna.random(), you can use the following, for convenience:
 
 ```javascript
-vesuna.value()			// Alias for vesuna.random()
+vesuna.amount();		// Alias for vesuna.random()
 vesuna.number( -1, 1 ); // Float between -1 and 1 inclusive
 vesuna.number( -1, 1, true ); // -1, 0, 1 ( rounded )
 vesuna.int( -2, 2 )     // -2, -1, 0, 1, 2
@@ -248,7 +248,7 @@ vesuna.random(); // Will always return 0.3661188334226608
 vesuna.random(); // Will always return 0.6075689995195717
 
 // Helper methods
-vesuna.value();
+vesuna.amount();
 vesuna.number( -1, 1 );
 vesuna.int( -2, 2 );
 vesuna.uint( 3 );
