@@ -59,6 +59,17 @@ class Random {
 	}
 
 	/**
+	 * Returns a float between -1 and 1.
+	 *
+	 * @returns {Number}	A float between 0 and 1
+	 */
+	noise() {
+
+		return this.number( - 1, 1 );
+
+	}
+
+	/**
 	 * Returns a pseudorandom integer.
 	 *
 	 * @param 	{Number}	min		Minimum number ( inclusive ).
