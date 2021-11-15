@@ -177,7 +177,8 @@ vesuna.number( -2, 2 ); // Float between -2 and 2
 vesuna.number( -2, 2, true ); // -2, -1, 0, 1, 2 ( rounded )
 vesuna.int( -3, 3 )     // -3, -2, -1, 0, 1, 2, 3
 vesuna.uint( 4 );       // 0, 1, 2, 3, 4
-vesuna.boolean();       // Either true or false
+vesuna.boolean();       // true or false
+vesuna.chance( 1 / 4 ); // 1/4 chance to be true, 3/4 to be false
 vesuna.item( array );   // Item from an array
 vesuna.char( string );  // Character from a string
 ```
@@ -254,9 +255,10 @@ vesuna.noise();  		// Alias for vesuna.number( -1, 1 )
 vesuna.number( -2, 2 ); // Float between -2 and 2
 vesuna.int( -3, 3 );	// Alias for vesuna.number( -3, 3, true )
 vesuna.uint( 4 );		// Alias for vesuna.number( 0, 4, true )
-vesuna.boolean();
-vesuna.item( array );
-vesuna.char( string );
+vesuna.boolean();		// true or false
+vesuna.chance( 1 / 4 ); // 1/4 chance to be true, 3/4 to be false
+vesuna.item( array );   // Item from an array
+vesuna.char( string );  // Character from a string
 ```
 
 ***

@@ -106,6 +106,18 @@ class Random {
 	}
 
 	/**
+	 * Returns a pseudorandom boolean for a given probability.
+	 *
+	 * @param   {Number} 	probability		A probability between 0 and 1.
+	 * @returns {Boolean}	The pseudorandomly generated boolean.
+	 */
+	chance( probability ) {
+
+		return ( this.random() < probability );
+
+	}
+
+	/**
 	 * Returns a pseudorandomly drawn item from an array.
 	 *
 	 * @param 	{Array}	array	The array to draw from.
