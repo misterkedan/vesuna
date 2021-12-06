@@ -1,6 +1,6 @@
 {
     "name": "vesuna",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "author": "Pierre Keda",
     "description": "Generate and use memorable random seeds.",
 	"keywords": [

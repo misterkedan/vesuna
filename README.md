@@ -107,38 +107,38 @@ vesuna.verbose = true;
 vesuna.autoseed(); // blue-fox-428
 
 // Different modes for different possible outcomes
-vesuna.mode = vesuna.modes.CODENAME;
+vesuna.mode = Vesuna.modes.CODENAME;
 vesuna.autoseed(); // blue-fox, blue-fox-428
 
-vesuna.mode = vesuna.modes.DESCRIPTION;
+vesuna.mode = Vesuna.modes.DESCRIPTION;
 vesuna.autoseed(); // sneezing-penguin, loudly-sneezing-giant-penguin
 
-vesuna.mode = vesuna.modes.GIBBERISH;
+vesuna.mode = Vesuna.modes.GIBBERISH;
 vesuna.autoseed(); // xuve, xuvetemi
 
-vesuna.mode = vesuna.modes.SERIAL;
+vesuna.mode = Vesuna.modes.SERIAL;
 vesuna.autoseed(); // 58AS, 58AS39KG
 
 // Separate words using a symbol
-vesuna.separator = vesuna.separators.NONE;       // bluefox
-vesuna.separator = vesuna.separators.DASH;       // blue-fox
-vesuna.separator = vesuna.separators.DOT;        // blue.fox
-vesuna.separator = vesuna.separators.SLASH;      // blue/fox
-vesuna.separator = vesuna.separators.SPACE;      // blue fox
-vesuna.separator = vesuna.separators.TILDE;      // blue~fox
-vesuna.separator = vesuna.separators.UNDERSCORE; // blue_fox
+vesuna.separator = Vesuna.separators.NONE;       // bluefox
+vesuna.separator = Vesuna.separators.DASH;       // blue-fox
+vesuna.separator = Vesuna.separators.DOT;        // blue.fox
+vesuna.separator = Vesuna.separators.SLASH;      // blue/fox
+vesuna.separator = Vesuna.separators.SPACE;      // blue fox
+vesuna.separator = Vesuna.separators.TILDE;      // blue~fox
+vesuna.separator = Vesuna.separators.UNDERSCORE; // blue_fox
 // Can be any string
 vesuna.separator = '+'; // blue+fox
 
 // Default settings
-vesuna.separator = vesuna.separators.NONE;
-vesuna.mode = vesuna.modes.CODENAME;
+vesuna.separator = Vesuna.separators.NONE;
+vesuna.mode = Vesuna.modes.CODENAME;
 vesuna.verbose = false;
 ```
 
 ## Possible outcomes
 
-This autoseeder provides a limited number of possible seeds, depending on the current settings. For example, using the defaults (vesuna.modes.CODENAME & vesuna.verbose=false) gives 1024 possible outcomes.  
+This autoseeder provides a limited number of possible seeds, depending on the current settings. For example, using the defaults (Vesuna.modes.CODENAME & vesuna.verbose=false) gives 1024 possible outcomes.  
 
 **Codename**  
 1024 / 1,024,000  
@@ -204,19 +204,19 @@ console.log( vesuna.seed ); // fireking
 vesuna.seed = 'custom seed';
 
 // Modes
-vesuna.mode = vesuna.modes.CODENAME;    // blue-fox
-vesuna.mode = vesuna.modes.DESCRIPTION; // sneezing-penguin
-vesuna.mode = vesuna.modes.GIBBERISH;   // xuve
-vesuna.mode = vesuna.modes.SERIAL;      // 58AS
+vesuna.mode = Vesuna.modes.CODENAME;    // blue-fox
+vesuna.mode = Vesuna.modes.DESCRIPTION; // sneezing-penguin
+vesuna.mode = Vesuna.modes.GIBBERISH;   // xuve
+vesuna.mode = Vesuna.modes.SERIAL;      // 58AS
 
 // Separators
-vesuna.separator = vesuna.separators.NONE;       // bluefox
-vesuna.separator = vesuna.separators.DASH;       // blue-fox
-vesuna.separator = vesuna.separators.DOT;        // blue.fox
-vesuna.separator = vesuna.separators.SLASH;      // blue/fox
-vesuna.separator = vesuna.separators.SPACE;      // blue fox
-vesuna.separator = vesuna.separators.TILDE;      // blue~fox
-vesuna.separator = vesuna.separators.UNDERSCORE; // blue_fox
+vesuna.separator = Vesuna.separators.NONE;       // bluefox
+vesuna.separator = Vesuna.separators.DASH;       // blue-fox
+vesuna.separator = Vesuna.separators.DOT;        // blue.fox
+vesuna.separator = Vesuna.separators.SLASH;      // blue/fox
+vesuna.separator = Vesuna.separators.SPACE;      // blue fox
+vesuna.separator = Vesuna.separators.TILDE;      // blue~fox
+vesuna.separator = Vesuna.separators.UNDERSCORE; // blue_fox
 // Can be any string
 vesuna.separator = '+'; // blue+fox
 
@@ -224,8 +224,8 @@ vesuna.separator = '+'; // blue+fox
 vesuna.verbose = true;
 
 // Defaults
-vesuna.mode = vesuna.modes.CODENAME; 
-vesuna.separator = vesuna.separators.NONE;
+vesuna.mode = Vesuna.modes.CODENAME; 
+vesuna.separator = Vesuna.separators.NONE;
 vesuna.verbose = false;
 ```
 
