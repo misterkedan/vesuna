@@ -1,8 +1,17 @@
 {
     "name": "vesuna",
-    "version": "2.0.0-beta.8",
-    "description": "Generate and use memorable random seeds.",
+    "version": "2.0.0",
     "author": "Pierre Keda",
+    "description": "Generate and use memorable random seeds.",
+	"keywords": [
+		"vesuna",
+		"javascript",
+		"random",
+		"seed",
+		"seeded",
+		"alea",
+		"prng"
+	],
     "license": "MIT",
     "devDependencies": {
         "@babel/core": "^7.16.0",
@@ -22,5 +31,9 @@
     "private": false,
     "main": "src/main.js",
     "homepage": "https://https://github.com/pierrekeda/vesuna/",
-    "repository": "github:pierrekeda/vesuna"
+    "repository": {
+		"type": "git",
+		"url": "github:pierrekeda/vesuna"
+	},
+	"sideEffects": false
 }

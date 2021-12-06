@@ -250,12 +250,12 @@ vesuna.random(); // Will always return 0.3661188334226608
 vesuna.random(); // Will always return 0.6075689995195717
 
 // Helper methods
-vesuna.amount();		// Alias for vesuna.random()
-vesuna.noise();  		// Alias for vesuna.number( -1, 1 )
+vesuna.amount();        // Alias for vesuna.random()
+vesuna.noise();         // Alias for vesuna.number( -1, 1 )
 vesuna.number( -2, 2 ); // Float between -2 and 2
-vesuna.int( -3, 3 );	// Alias for vesuna.number( -3, 3, true )
-vesuna.uint( 4 );		// Alias for vesuna.number( 0, 4, true )
-vesuna.boolean();		// true or false
+vesuna.int( -3, 3 );    // Alias for vesuna.number( -3, 3, true )
+vesuna.uint( 4 );       // Alias for vesuna.number( 0, 4, true )
+vesuna.boolean();       // true or false
 vesuna.chance( 1 / 4 ); // 1/4 chance to be true, 3/4 to be false
 vesuna.item( array );   // Item from an array
 vesuna.char( string );  // Character from a string
