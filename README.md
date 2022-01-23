@@ -1,11 +1,11 @@
 # Vesuna
 
-![Preview](cover.jpg)
+![Preview](preview.gif)
 
 Vesuna is a tiny utiliy library, to generate and use memorable random seeds.  
 
-[Demo](https://pierrekeda.github.io/vesuna/)  
-Note that the generated background will always be the same for a given seed, despite being pseudorandomly generated. Typing "vesuna" in the "seed" input will give the exact same outcome as above.  
+[Demo](https://pierrekeda.com/demo/vesuna/) ( WIP )  
+Note that the result will always be the same for a given seed, despite being pseudorandomly generated.
 
 # Credits
 
