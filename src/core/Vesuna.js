@@ -1,40 +1,49 @@
-import { Alea } from '../lib/Alea';
-import { Random } from './Random';
-import { SeedGenerator } from './SeedGenerator';
+import { VesunaLite } from './VesunaLite';
+import { CodenameGenerator } from '../generators/CodenameGenerator';
+import { Generator } from '../generators/Generator';
+import { DishGenerator } from '../generators/DishGenerator';
+import { GibberishGenerator } from '../generators/GibberishGenerator';
 
-class Vesuna extends Random {
+class Vesuna extends VesunaLite {
 
 	/**
 	 * Creates a string-seeded PRNG, that will always generate the same
-	 * pseudorandom number sequence for a given seed.
-	 *
-	 * @param {String} seed		The text-based seed.
+	 * pseudorandom number sequence for a given seed, coupled with an advanced
+	 * seed generator.
+	 * @param {Object} options Options object.
+	 * @param {String} options.seed The initial seed.
+	 * @param {String} options.mode A generator mode, pick one from Vesuna.modes.
+	 * @param {String} options.separator A character to separate words. See
+	 * Vesuna.separators for examples.
+	 * @param {Boolean} options.verbose Set to true for longer seeds with more
+	 * possible outcomes.
 	 */
-	constructor( seed ) {
+	constructor( {
+		seed,
+		mode = Vesuna.modes.CODENAME,
+		separator = Vesuna.separators.NONE,
+		verbose = false,
+	} = {} ) {
 
-		super();
+		const GeneratorClass = Vesuna.generators[ mode ] || CodenameGenerator;
+		const generator = new GeneratorClass();
 
-		if ( seed ) this.seed = seed;
-		else this.autoseed();
+		if ( ! seed ) seed = generator.generate( separator, verbose );
+
+		super( seed, generator );
+
+		this._mode = mode;
+		this.separator = separator;
+		this.verbose = verbose;
 
 	}
 
 	/**
-	 * Generates a seed for this Vesuna instance, using a SeedGenerator.
+	 * Generates a seed for this Vesuna instance, using a Generator.
 	 */
 	autoseed() {
 
-		this.seed = this.generator.generate();
-
-	}
-
-	/**
-	 * Reset the number sequence. If the seed is unchanged, the sequence will
-	 * be the same every time.
-	 */
-	reset() {
-
-		this.prng = new Alea( this.seed );
+		this.seed = this.generator.generate( this.separator, this.verbose );
 
 	}
 
@@ -44,116 +53,51 @@ class Vesuna extends Random {
 
 	/-------------------------------------------------------------------------*/
 
-	get generator() {
+	get mode() {
 
-		if ( ! this._generator ) {
+		return this._mode;
 
-			if ( ! Vesuna.generator ) Vesuna.generator = new SeedGenerator();
-			this._generator = Vesuna.generator;
+	}
+
+	set mode( string ) {
+
+		const Generator = Vesuna.generators[ string ];
+		if ( ! Generator ) {
+
+			this.mode = Vesuna.modes.CODENAME;
+			return;
 
 		}
 
-		return this._generator;
-
-	}
-
-	set generator( value ) {
-
-		this._generator = value;
-
-	}
-
-	get seed() {
-
-		return this._seed;
-
-	}
-
-	set seed( value ) {
-
-		this._seed = value;
-		this.reset();
-
-	}
-
-	/*-------------------------------------------------------------------------/
-
-		Generator shortcuts
-
-	/-------------------------------------------------------------------------*/
-
-	codename() {
-
-		return this.generator.codename();
-
-	}
-
-	description() {
-
-		return this.generator.description();
-
-	}
-
-	gibberish() {
-
-		return this.generator.gibberish();
-
-	}
-
-	serial() {
-
-		return this.generator.serial();
-
-	}
-
-	get mode() {
-
-		return this.generator.mode;
-
-	}
-
-	set mode( value ) {
-
-		this.generator.mode = value;
-
-	}
-
-	get separator() {
-
-		return this.generator.separator;
-
-	}
-
-	set separator( value ) {
-
-		this.generator.separator = value;
-
-	}
-
-	get verbose() {
-
-		return this.generator.verbose;
-
-	}
-
-	set verbose( value ) {
-
-		this.generator.verbose = value;
-
-	}
-
-	get modes() {
-
-		return SeedGenerator.modes;
-
-	}
-
-	get separators() {
-
-		return SeedGenerator.separators;
+		this._mode = string;
+		this.generator = new Generator();
+		this.autoseed();
 
 	}
 
 }
+
+const CODENAME = 'codename';
+const DISH = 'dish';
+const GIBBERISH = 'gibberish';
+const HASH = 'hash';
+Vesuna.modes = { CODENAME, DISH, GIBBERISH, HASH };
+
+Vesuna.generators = {
+	[ CODENAME ]: CodenameGenerator,
+	[ DISH ]: DishGenerator,
+	[ GIBBERISH ]: GibberishGenerator,
+	[ HASH ]: Generator,
+};
+
+Vesuna.separators = {
+	NONE: '',
+	DASH: '-',
+	DOT: '.',
+	SLASH: '/',
+	SPACE: ' ',
+	TILDE: '~',
+	UNDERSCORE: '_',
+};
 
 export { Vesuna };

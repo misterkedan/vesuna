@@ -22,21 +22,21 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-//
-// Yoinked from https://github.com/davidbau/seedrandom
-// Edited by Pierre Keda
 
-function Mash() {
+// ES6 edit by Pierre Keda
 
-	var n = 0xefc8249d;
+export function Alea( seed = Date.now() ) {
 
-	var mash = function ( data ) {
+	let n = 0xefc8249d;
 
-		data = String( data );
-		for ( var i = 0; i < data.length; i ++ ) {
+	const mash = ( data ) => {
 
-			n += data.charCodeAt( i );
-			var h = 0.02519603282416938 * n;
+		const string = data.toString();
+
+		for ( let i = 0; i < string.length; i ++ ) {
+
+			n += string.charCodeAt( i );
+			let h = 0.02519603282416938 * n;
 			n = h >>> 0;
 			h -= n;
 			h *= n;
@@ -50,38 +50,29 @@ function Mash() {
 
 	};
 
-	return mash;
+	const space = ' ';
 
-}
+	let c = 1;
+	let s0 = mash( space );
+	let s1 = mash( space );
+	let s2 = mash( space );
 
-function Alea( seed ) {
+	s0 -= mash( seed );
+	if ( s0 < 0 ) s0 ++;
 
-	var me = this;
-	var mash = Mash();
+	s1 -= mash( seed );
+	if ( s1 < 0 ) s1 ++;
 
-	me.random = function () {
+	s2 -= mash( seed );
+	if ( s2 < 0 ) s2 ++;
 
-		var t = 2091639 * me.s0 + me.c * 2.3283064365386963e-10; // 2^-32
-		me.s0 = me.s1;
-		me.s1 = me.s2;
-		return me.s2 = t - ( me.c = t | 0 );
+	this.random = function () {
+
+		const t = 2091639 * s0 + c * 2.3283064365386963e-10; // 2^-32
+		s0 = s1;
+		s1 = s2;
+		return s2 = t - ( c = t | 0 );
 
 	};
 
-	// Johannes Baagøe's seeding algorithm
-	me.c = 1;
-	me.s0 = mash( ' ' );
-	me.s1 = mash( ' ' );
-	me.s2 = mash( ' ' );
-	me.s0 -= mash( seed );
-	if ( me.s0 < 0 ) me.s0 += 1;
-
-	me.s1 -= mash( seed );
-	if ( me.s1 < 0 ) me.s1 += 1;
-
-	me.s2 -= mash( seed );
-	if ( me.s2 < 0 ) me.s2 += 1;
-
 }
-
-export { Alea };
