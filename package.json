@@ -1,19 +1,19 @@
 {
     "name": "vesuna",
-    "version": "3.0.0",
-    "author": "Pierre Keda",
+    "version": "3.1.0",
+    "author": "Kedan",
     "description": "Generate and use memorable random seeds.",
     "keywords": [
-		"alea",
-		"keda",
+        "kedan",
+        "vesuna",
         "javascript",
+		"alea",
         "PRNG",
 		"pseudorandom",
         "random",
         "seed",
         "generative",
-		"utility",
-		"vesuna"
+		"utility"
     ],
     "license": "MIT",
     "devDependencies": {
@@ -44,9 +44,9 @@
 	"sideEffects": false,
     "private": false,
     "main": "src/main.js",
-    "homepage": "https://https://github.com/pierrekeda/vesuna/",
+    "homepage": "https://https://github.com/misterkedan/vesuna/",
     "repository": {
         "type": "git",
-        "url": "github:pierrekeda/vesuna"
+        "url": "github:misterkedan/vesuna"
     }
 }

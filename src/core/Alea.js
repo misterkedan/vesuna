@@ -23,7 +23,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// ES6 edit by Pierre Keda
+// ES6 edit by Kedan
 
 export function Alea( seed = Date.now() ) {
 

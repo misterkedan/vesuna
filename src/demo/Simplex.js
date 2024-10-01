@@ -27,7 +27,7 @@
  * SOFTWARE.
  */
 
-// Rename + clean-up by Pierre Keda
+// Rename + clean-up by Kedan
 
 const F2 = 0.5 * ( Math.sqrt( 3.0 ) - 1.0 );
 const G2 = ( 3.0 - Math.sqrt( 3.0 ) ) / 6.0;

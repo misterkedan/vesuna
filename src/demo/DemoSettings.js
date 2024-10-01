@@ -4,9 +4,9 @@ const DemoSettings = {
 
 		name: 'Vesuna (Demo)',
 		date: '2022',
-		author: 'Pierre Keda',
-		homepage: 'https://pierrekeda.com',
-		github: 'https://github.com/pierrekeda/vesuna',
+		author: 'Kedan',
+		homepage: 'https://kedan.fr',
+		github: 'https://github.com/misterkedan/vesuna',
 
 		background: {
 			color1: '#000000',

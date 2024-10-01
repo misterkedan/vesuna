@@ -6,12 +6,11 @@ Vesuna is a small utility library, to generate and use memorable random seeds.
 
 # Demo
 
-[pierrekeda.com/demo/vesuna](https://pierrekeda.com/demo/vesuna/) 
+[Live](https://misterkedan.github.io/vesuna) 
 
 Note that the result is always the same for a given seed, despite being pseudorandomly generated.  
 
-*Demo made with:
-[sk3ch](https://github.com/pierrekeda/sk3tch), 
+*Demo made with
 [three.js](https://github.com/mrdoob/three.js) and 
 [lil-gui](https://lil-gui.georgealways.com).*
 
@@ -218,4 +217,4 @@ alea.random(); // 0-1 float
 This library is based on [Johannes Baagøe's PRNG algorithm](https://github.com/nquinlan/better-random-numbers-for-javascript-mirror).
 
 ***
-*Pierre Keda - 2022*
+*Kedan - 2022*
